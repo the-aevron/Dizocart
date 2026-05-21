@@ -1,0 +1,444 @@
+/* ======================================================
+   Dizo Cart — 09-admin.css
+   Extracted from dizo_cart_V47.html | Lines 457-894
+   DO NOT EDIT manually — auto-generated
+====================================================== */
+
+/* ADMIN PANEL */
+.admin-panel{position:fixed;inset:0;background:var(--bg);z-index:250;display:none;flex-direction:column}
+.admin-panel.open{display:flex}
+.admin-bar{min-height:56px;background:var(--text);display:flex;align-items:center;padding:0 1rem;gap:0.75rem;flex-wrap:nowrap;overflow:hidden;position:relative}
+.admin-bar-logo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);white-space:nowrap;flex-shrink:0}
+.admin-bar-logo span{color:var(--gold)}
+.admin-bar-nav{display:flex;gap:0.25rem;flex:1;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.admin-bar-nav::-webkit-scrollbar{display:none}
+.admin-nav-btn{padding:0.35rem 0.75rem;border-radius:var(--r2);font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.6);transition:all var(--transition);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.admin-nav-btn:hover,.admin-nav-btn.active{background:rgba(255,255,255,0.12);color:var(--white)}
+.admin-exit-btn{color:rgba(255,255,255,0.6);font-size:0.75rem;padding:0.35rem 0.625rem;border:1px solid rgba(255,255,255,0.15);border-radius:var(--r2);cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;background:none;font-family:inherit}
+.admin-exit-btn:hover{background:rgba(255,80,80,0.2);color:#fca5a5;border-color:rgba(255,80,80,0.3)}
+.admin-content{flex:1;overflow-y:auto;padding:1.25rem;-webkit-overflow-scrolling:touch}
+.admin-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.admin-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;transition:all var(--transition)}
+.admin-card:hover{box-shadow:var(--shadow2);transform:translateY(-2px)}
+.admin-card-label{font-size:0.7rem;color:var(--text3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.4rem}
+.admin-card-value{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--text)}
+.admin-card-change{font-size:0.72rem;color:#059669;margin-top:0.2rem}
+.admin-section{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;margin-bottom:1.25rem;overflow:hidden}
+.admin-section-title{font-size:0.95rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between}
+.admin-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.admin-table{width:100%;border-collapse:collapse;font-size:0.82rem;min-width:500px}
+.admin-table th{text-align:left;padding:0.45rem 0.625rem;font-size:0.68rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;border-bottom:1px solid var(--border);white-space:nowrap}
+.admin-table td{padding:0.625rem;border-bottom:1px solid var(--border);color:var(--text2)}
+.admin-table tr:last-child td{border-bottom:none}
+.status-badge{display:inline-flex;padding:0.15rem 0.5rem;border-radius:var(--r3);font-size:0.65rem;font-weight:700;letter-spacing:0.04em}
+.status-pending{background:#FEF3C7;color:#92400E}
+.status-processing{background:#DBEAFE;color:#1E3A8A}
+.status-shipped{background:#D1FAE5;color:#065F46}
+.admin-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.admin-tabs{display:flex;gap:0.25rem;margin-bottom:1.25rem;border-bottom:1px solid var(--border);padding-bottom:0;overflow-x:auto;scrollbar-width:none}
+.admin-tabs::-webkit-scrollbar{display:none}
+.admin-tab{padding:0.5rem 0.875rem;font-size:0.8rem;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all var(--transition);margin-bottom:-1px;white-space:nowrap}
+.admin-tab.active{color:var(--text);border-color:var(--text)}
+@media(max-width:768px){
+  .admin-cards{grid-template-columns:1fr 1fr}
+  .admin-form-row{grid-template-columns:1fr}
+  .admin-content{padding:0.875rem}
+}
+@media(max-width:480px){
+  .admin-cards{grid-template-columns:1fr 1fr}
+  .admin-bar{padding:0 0.75rem;gap:0.5rem}
+  .admin-bar-logo{font-size:0.875rem}
+  .admin-nav-btn{font-size:0.7rem;padding:0.3rem 0.6rem}
+}
+
+/* ===== PRODUCT MANAGEMENT — MOBILE CARD LAYOUT ===== */
+@media(max-width:768px){
+  /* Hide the table header on mobile */
+  .admin-product-table thead{display:none}
+
+  /* Make each row a stacked card */
+  .admin-product-table,
+  .admin-product-table tbody,
+  .admin-product-table tr{
+    display:block;
+    width:100%;
+  }
+
+  .admin-product-table tr{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    padding:0.875rem;
+    margin-bottom:0.875rem;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .admin-product-table tr:last-child{margin-bottom:0}
+
+  /* Each cell becomes a flex row: label on left, value on right */
+  .admin-product-table td{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.75rem;
+    padding:0.45rem 0;
+    border-bottom:1px solid var(--border);
+    font-size:0.82rem;
+    text-align:right;
+  }
+  .admin-product-table td:last-child{border-bottom:none;padding-bottom:0}
+  .admin-product-table td:first-child{padding-top:0}
+
+  /* Inline label via data-label attribute */
+  .admin-product-table td::before{
+    content:attr(data-label);
+    font-size:0.68rem;
+    font-weight:700;
+    color:var(--text3);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    white-space:nowrap;
+    flex-shrink:0;
+    text-align:left;
+  }
+
+  /* Images cell: stack thumbnails + validation tag vertically, left-aligned */
+  .admin-product-table td.pm-td-images{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0.4rem;
+  }
+  .admin-product-table td.pm-td-images::before{display:none}
+  .admin-product-table td.pm-td-images .pm-imgs-wrap{
+    display:flex;align-items:flex-end;gap:4px;flex-wrap:wrap;
+  }
+
+  /* Actions cell: stretch buttons full-width */
+  .admin-product-table td.pm-td-actions{
+    flex-direction:column;
+    align-items:stretch;
+    gap:0.5rem;
+  }
+  .admin-product-table td.pm-td-actions::before{display:none}
+  .admin-product-table td.pm-td-actions .pm-actions-wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;width:100%;
+  }
+  .admin-product-table td.pm-td-actions .pm-actions-wrap button{
+    padding:0.55rem 0.5rem!important;
+    font-size:0.78rem!important;
+    border-radius:6px!important;
+    font-weight:700!important;
+    text-align:center;
+    min-height:36px;
+  }
+
+  /* Product name: bold and larger on mobile */
+  .admin-product-table td.pm-td-name{font-weight:700;font-size:0.9rem}
+}
+
+/* ===== UNLIMITED IMAGE SYSTEM — Admin Form ===== */
+#imgUrlList{display:flex;flex-direction:column;gap:0.625rem}
+.admin-img-field-row{
+  display:grid;
+  grid-template-columns:80px 1fr auto auto;
+  gap:0.5rem;align-items:center;
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:var(--r2);padding:0.5rem 0.625rem;
+  transition:border-color 0.2s
+}
+.admin-img-field-row:first-child{border-color:var(--gold)}
+.admin-img-field-row .img-preview-box{
+  width:72px;height:72px;background:var(--bg3);border-radius:8px;
+  border:2px dashed var(--border);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.65rem;font-weight:700;color:var(--text3);
+  position:relative;flex-shrink:0
+}
+.admin-img-field-row:first-child .img-preview-box{border-color:var(--gold)}
+.admin-img-field-row .img-preview-box img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:6px
+}
+.admin-img-field-row .img-url-input{
+  width:100%;padding:0.45rem 0.6rem;border:1.5px solid var(--border);
+  border-radius:var(--r2);font-size:0.8rem;outline:none;font-family:inherit;
+  transition:border-color 0.2s;background:var(--white)
+}
+.admin-img-field-row .img-url-input:focus{border-color:var(--gold)}
+.admin-img-field-row .img-primary-badge{
+  font-size:0.55rem;font-weight:800;background:var(--gold);color:#fff;
+  padding:2px 6px;border-radius:4px;letter-spacing:0.04em;white-space:nowrap
+}
+.admin-img-remove-btn{
+  width:30px;height:30px;background:#FEE2E2;color:#991B1B;border:none;
+  border-radius:6px;cursor:pointer;font-size:0.75rem;display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s
+}
+.admin-img-remove-btn:hover{background:#dc2626;color:#fff}
+#addMoreImgBtn{
+  width:100%;padding:0.6rem;border:2px dashed var(--border);background:transparent;
+  border-radius:var(--r2);font-size:0.82rem;font-weight:700;color:var(--text2);
+  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;
+  margin-top:0.375rem
+}
+#addMoreImgBtn:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,169,110,0.06)}
+
+/* ===== PDP GALLERY — Unlimited image slider ===== */
+.pdp-gallery-slider{position:relative;overflow:hidden;border-radius:24px}
+.pdp-slides-track{display:flex;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1)}
+.pdp-slide{flex:0 0 100%;aspect-ratio:1;background:var(--bg2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pdp-slide img{width:100%;height:100%;object-fit:cover}
+.pdp-gallery-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:36px;height:36px;background:rgba(255,255,255,0.92);
+  border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.1rem;z-index:5;
+  transition:all 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.1)
+}
+.pdp-gallery-arrow:hover{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+.pdp-gallery-arrow.prev{left:0.625rem}
+.pdp-gallery-arrow.next{right:0.625rem}
+.pdp-gallery-dots{display:flex;gap:5px;justify-content:center;margin-top:0.625rem;flex-wrap:wrap}
+.pdp-gallery-dot{width:7px;height:7px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all 0.2s;padding:0}
+.pdp-gallery-dot.active{background:var(--gold);width:20px;border-radius:4px}
+.pdp-thumbnails-scroll{display:flex;gap:0.625rem;margin-top:0.75rem;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;flex-wrap:wrap}
+.pdp-thumbnails-scroll::-webkit-scrollbar{display:none}
+
+/* ===== SECURE RESET MODAL ===== */
+#secureResetModal{animation:fadeIn 0.2s ease}
+#secureResetModal > div{animation:fadeUp 0.25s cubic-bezier(0.4,0,0.2,1)}
+#secureResetModal input[type="password"],#secureResetModal input[type="text"]{
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+#secureResetModal input:focus{box-shadow:0 0 0 3px rgba(200,169,110,0.2)}
+
+/* ===== EXTRA COMPREHENSIVE MOBILE RESPONSIVENESS ===== */
+
+/* Ensure no element causes horizontal overflow */
+@media(max-width:768px){
+  /* Fix all sections that might overflow */
+  .main-site-content, .hero-banner-section, .promo-services-strip,
+  .section, .section-full, footer {
+    width:100%!important;
+    max-width:100vw!important;
+    overflow-x:hidden!important;
+  }
+
+  /* Fix hero/banner image section */
+  .hero{
+    padding-top:calc(var(--mobile-total-nav) + 1rem)!important;
+    grid-template-columns:1fr!important;
+    min-height:auto!important;
+    padding-left:0.75rem!important;
+    padding-right:0.75rem!important;
+    gap:1.5rem!important;
+  }
+  .hero-visual{display:none!important}
+  .hero h1{font-size:clamp(1.75rem,7vw,2.5rem)!important}
+  .hero-desc{font-size:0.925rem!important}
+  .hero-actions{flex-wrap:wrap;gap:0.75rem}
+  .hero-stats{gap:1.25rem}
+
+  /* Fix images in product cards */
+  .product-img{font-size:2.5rem}
+  .cat-img{font-size:2.2rem}
+
+  /* Ensure product grid items don't overflow */
+  .product-card, .cat-card{
+    min-width:0;
+    width:100%;
+    overflow:hidden;
+  }
+
+  /* Fix product card buttons on mobile */
+  .btn-buy-now, .btn-gold{
+    font-size:0.72rem!important;
+    padding:0.4rem 0.75rem!important;
+  }
+
+  /* Fix flash sale section */
+  .flash-sale-section{width:100%;overflow:hidden}
+  .flash-grid{width:100%}
+
+  /* Fix brands strip — allow wrapping, never clip */
+  .brands-strip{width:100%;overflow:visible;flex-wrap:wrap;gap:0.75rem;padding:1.25rem 0.75rem;justify-content:center}
+  .brands-strip::-webkit-scrollbar{display:none}
+
+  /* Fix promo strip */
+  .promo-strip{overflow:hidden}
+  .promo-strip-inner{gap:0.625rem}
+
+  /* Testimonials */
+  .testimonials-grid{grid-template-columns:1fr!important}
+
+  /* Fix newsletter section */
+  .newsletter{width:calc(100% - 1.5rem)!important;margin:0 0.75rem!important}
+  .newsletter h2{font-size:1.3rem}
+  .newsletter-form input{width:100%}
+  .newsletter-form button{width:100%}
+
+  /* Fix footer */
+  footer .section{padding-left:0.875rem;padding-right:0.875rem}
+  .footer-links{gap:0.5rem;flex-wrap:wrap}
+
+  /* Fix search dropdown to not cause overflow */
+  .nav-search-dropdown{
+    position:fixed!important;
+    top:var(--mobile-total-nav)!important;
+    left:0!important;
+    right:0!important;
+    width:100vw!important;
+    border-left:none!important;
+    border-right:none!important;
+    border-radius:0 0 var(--r) var(--r)!important;
+    z-index:500!important;
+    max-height:55vh!important;
+    overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+
+  /* Fix mobile menu width to not overflow */
+  .mobile-menu{width:min(280px, 85vw)!important}
+
+  /* Fix all fixed modals/panels on mobile */
+  .cart-drawer{width:100vw!important;max-width:100vw!important;right:0!important;left:0!important}
+  .wishlist-panel{width:100vw!important;max-width:100vw!important}
+
+  /* Fix quick view modal */
+  #quickViewModal .modal-inner,
+  #quickViewModal .modal,
+  #quickViewModal [class*="modal"]{
+    width:100%!important;
+    max-width:100vw!important;
+    margin:0!important;
+    border-radius:20px 20px 0 0!important;
+  }
+
+  /* Fix image and video containers */
+  img, video, iframe{max-width:100%!important;height:auto}
+
+  /* Fix any inline-block or float elements */
+  .promo-tag-list, .banner-perks{flex-wrap:wrap}
+
+  /* Ensure section paddings are consistent */
+  .section-full{padding-left:0;padding-right:0}
+}
+
+/* Extra small phones (320px - 380px range) */
+@media(max-width:380px){
+  .mobile-logo{font-size:1rem!important}
+  .mobile-hamburger, .mobile-cart-btn{width:36px!important;height:36px!important}
+  .mobile-nav-top{padding:0 0.5rem!important}
+  .mobile-search-row{padding:0.4rem 0.625rem 0.5rem!important}
+  .mobile-search-wrap input{font-size:0.8rem!important;padding:0.5rem 0.625rem!important}
+  .mobile-search-wrap button{width:40px!important;min-width:40px!important}
+  .categories-grid,.products-grid{gap:0.5rem!important}
+  .section{padding:1.25rem 0.5rem!important}
+  .banner-headline{font-size:1.1rem!important}
+  .cat-page-grid{gap:0.5rem!important}
+}
+
+/* Large phones (> 414px, < 768px) */
+@media(min-width:414px) and (max-width:768px){
+  .categories-grid{grid-template-columns:repeat(2,1fr)!important}
+  .products-grid{grid-template-columns:repeat(2,1fr)!important}
+  .section{padding:2rem 1rem!important}
+  .product-body{padding:0.875rem}
+  .product-name{font-size:0.85rem}
+}
+
+/* Landscape phone orientation fix */
+@media(max-width:900px) and (orientation:landscape) and (max-height:500px){
+  .hero-banner-section{padding-top:100px!important}
+  .banner-slider-wrap{min-height:150px!important}
+  .banner-slider{min-height:150px!important}
+  .mobile-nav{position:fixed}
+  .hero{padding-top:110px!important;min-height:auto!important}
+}
+
+/* Safe area insets for notched phones (iPhone X+) */
+@supports(padding-bottom: env(safe-area-inset-bottom)){
+  @media(max-width:768px){
+    body{padding-bottom:calc(60px + env(safe-area-inset-bottom))!important}
+    .mobile-tab-bar{padding-bottom:env(safe-area-inset-bottom);height:calc(60px + env(safe-area-inset-bottom))}
+    .cart-drawer{bottom:calc(60px + env(safe-area-inset-bottom))}
+    .wishlist-panel{bottom:calc(60px + env(safe-area-inset-bottom))}
+    .toast-container{bottom:calc(60px + env(safe-area-inset-bottom) + 0.75rem)}
+    a[title="WhatsApp Support"]{bottom:calc(60px + env(safe-area-inset-bottom) + 0.75rem)}
+  }
+}
+
+.reveal.visible{opacity:1;transform:translateY(0)}
+.hover-lift{transition:all var(--transition)}
+.hover-lift:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+
+/* ADMIN PASSWORD GATE */
+.admin-login-gate{position:fixed;inset:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(16px);z-index:260;display:none;align-items:center;justify-content:center}
+.admin-login-gate.open{display:flex}
+.admin-login-box{background:var(--white);border-radius:24px;padding:3rem 2.5rem;max-width:400px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,0.3);animation:fadeUp 0.4s ease both;position:relative;text-align:center}
+.admin-login-icon{width:72px;height:72px;background:var(--text);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.75rem;margin:0 auto 1.5rem;color:var(--white)}
+.admin-login-title{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:0.4rem;color:var(--text)}
+.admin-login-sub{font-size:0.85rem;color:var(--text3);margin-bottom:2rem}
+.admin-login-input-wrap{position:relative;margin-bottom:1rem}
+.admin-login-input-wrap input{width:100%;padding:0.85rem 2.75rem 0.85rem 1rem;border:1.5px solid var(--border);border-radius:var(--r);font-size:0.9rem;font-family:inherit;outline:none;transition:border-color var(--transition);background:var(--bg);text-align:left;letter-spacing:0.1em}
+.admin-login-input-wrap input:focus{border-color:var(--text);background:var(--white)}
+.admin-login-eye{position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--text3);font-size:1rem;user-select:none;transition:color var(--transition)}
+.admin-login-eye:hover{color:var(--text)}
+.admin-login-error{background:#FEE2E2;color:#991B1B;border-radius:var(--r2);padding:0.6rem 1rem;font-size:0.8rem;margin-bottom:1rem;display:none;text-align:left}
+.admin-login-error.show{display:block;animation:fadeUp 0.3s ease}
+.admin-login-btn{width:100%;padding:0.875rem;background:var(--text);color:var(--white);border:none;border-radius:var(--r);font-size:0.9rem;font-weight:700;cursor:pointer;transition:all var(--transition);letter-spacing:0.04em}
+.admin-login-btn:hover{background:#333;transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+.admin-login-hint{margin-top:1.25rem;font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:var(--r2);padding:0.6rem 0.875rem}
+.admin-login-hint strong{color:var(--text)}
+/* ===== PREMIUM ADMIN LOGIN CARD — Dizo Cart V39 Security Layer ===== */
+.dizo-admin-login-card{position:relative;background:linear-gradient(145deg,#0f0f0d 0%,#1a1a18 60%,#1e1c16 100%);border:1px solid rgba(200,169,110,0.25);border-radius:24px;padding:0;max-width:420px;width:calc(100% - 2rem);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.04);animation:dizoAdminReveal 0.5s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes dizoAdminReveal{from{opacity:0;transform:scale(0.88) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes dizoAdminShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.dizo-al-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 0%,rgba(200,169,110,0.12) 0%,transparent 60%),radial-gradient(circle at 80% 100%,rgba(200,169,110,0.08) 0%,transparent 50%);pointer-events:none;z-index:0}
+.dizo-al-logo{position:relative;z-index:1;padding:2.25rem 2.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;align-items:center;gap:0.375rem}
+.dizo-al-logo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--gold),#e0b76a);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:0.625rem;box-shadow:0 8px 24px rgba(200,169,110,0.35);animation:dizoAdminLockPulse 3s ease-in-out infinite}
+@keyframes dizoAdminLockPulse{0%,100%{box-shadow:0 8px 24px rgba(200,169,110,0.35)}50%{box-shadow:0 8px 36px rgba(200,169,110,0.55)}}
+.dizo-al-logo-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#fff;letter-spacing:-0.02em}
+.dizo-al-logo-text span{color:var(--gold)}
+.dizo-al-logo-sub{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.dizo-al-form{position:relative;z-index:1;padding:1.75rem 2.5rem 2rem}
+.dizo-al-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff;font-weight:600;margin-bottom:0.3rem;text-align:center}
+.dizo-al-subtitle{font-size:0.78rem;color:rgba(255,255,255,0.38);text-align:center;margin-bottom:1.5rem}
+.dizo-al-label{display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.4rem}
+.dizo-al-field-wrap{margin-bottom:0.75rem}
+.dizo-al-input-wrap{position:relative;display:flex;align-items:center}
+.dizo-al-input-icon{position:absolute;left:0.875rem;color:rgba(255,255,255,0.3);pointer-events:none;display:flex;align-items:center}
+.dizo-al-input{width:100%;padding:0.875rem 2.75rem 0.875rem 2.75rem;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;font-family:inherit;outline:none;transition:all 0.25s;letter-spacing:0.1em;box-sizing:border-box}
+.dizo-al-input:focus{background:rgba(255,255,255,0.09);border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,169,110,0.15)}
+.dizo-al-input::placeholder{color:rgba(255,255,255,0.22);letter-spacing:normal}
+.dizo-al-eye{position:absolute;right:0.875rem;background:none;border:none;color:rgba(255,255,255,0.32);cursor:pointer;padding:0;display:flex;align-items:center;transition:color 0.2s}
+.dizo-al-eye:hover{color:var(--gold)}
+.dizo-al-error{display:none;align-items:center;gap:0.4rem;background:rgba(220,38,38,0.14);border:1px solid rgba(220,38,38,0.28);border-radius:8px;padding:0.55rem 0.75rem;font-size:0.78rem;color:#fca5a5;margin-bottom:0.875rem;flex-shrink:0}
+.dizo-al-error.show{display:flex;animation:fadeUp 0.3s ease}
+.dizo-al-options{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;gap:0.5rem}
+.dizo-al-remember{display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:0.77rem;color:rgba(255,255,255,0.45);user-select:none}
+.dizo-al-remember input{display:none}
+.dizo-al-toggle{width:32px;height:18px;background:rgba(255,255,255,0.1);border-radius:9px;position:relative;transition:background 0.25s;flex-shrink:0;border:1px solid rgba(255,255,255,0.1)}
+.dizo-al-toggle::after{content:'';position:absolute;top:2px;left:2px;width:12px;height:12px;background:rgba(255,255,255,0.45);border-radius:50%;transition:all 0.25s}
+.dizo-al-remember input:checked~.dizo-al-toggle{background:var(--gold);border-color:var(--gold)}
+.dizo-al-remember input:checked~.dizo-al-toggle::after{left:16px;background:#fff}
+.dizo-al-forgot{background:none;border:none;font-size:0.77rem;color:rgba(200,169,110,0.75);cursor:pointer;font-family:inherit;transition:color 0.2s;white-space:nowrap}
+.dizo-al-forgot:hover{color:var(--gold)}
+.dizo-al-btn{width:100%;padding:0.9rem 1.5rem;background:linear-gradient(135deg,var(--gold) 0%,#d4a843 100%);color:#fff;border:none;border-radius:10px;font-size:0.9rem;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:0.03em;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.25s;position:relative;overflow:hidden;margin-bottom:0.875rem;min-height:46px}
+.dizo-al-btn:hover{background:linear-gradient(135deg,#d4a843 0%,#b8963a 100%);transform:translateY(-1px);box-shadow:0 6px 20px rgba(200,169,110,0.45)}
+.dizo-al-btn:active{transform:translateY(0)}
+.dizo-al-btn-loader{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:dizoSpinLoader 0.7s linear infinite;flex-shrink:0}
+.dizo-al-btn.loading .dizo-al-btn-text,.dizo-al-btn.loading .dizo-al-btn-arrow{display:none}
+.dizo-al-btn.loading .dizo-al-btn-loader{display:block}
+@keyframes dizoSpinLoader{to{transform:rotate(360deg)}}
+.dizo-al-btn-arrow{transition:transform 0.2s;flex-shrink:0}
+.dizo-al-btn:hover .dizo-al-btn-arrow{transform:translateX(3px)}
+.dizo-al-cancel{width:100%;padding:0.6rem;background:none;border:none;font-size:0.76rem;color:rgba(255,255,255,0.22);cursor:pointer;font-family:inherit;transition:color 0.2s}
+.dizo-al-cancel:hover{color:rgba(255,255,255,0.45)}
+@media(max-width:480px){
+  .dizo-admin-login-card{border-radius:20px 20px 0 0;max-width:100%;width:100%}
+  .dizo-al-logo{padding:1.75rem 1.5rem 1.25rem}
+  .dizo-al-form{padding:1.5rem 1.5rem 1.75rem}
+}
+.admin-logout-btn{padding:0.35rem 0.875rem;border-radius:var(--r2);font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);cursor:pointer;transition:all var(--transition);margin-left:auto}
+.admin-logout-btn:hover{background:rgba(255,80,80,0.25);color:#fca5a5}

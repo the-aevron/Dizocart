@@ -1,0 +1,25 @@
+/* ======================================================
+   Dizo Cart — 07-animations.css
+   Extracted from dizo_cart_V47.html | Lines 374-392
+   DO NOT EDIT manually — auto-generated
+====================================================== */
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes reveal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes heartPop{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
+
+.animate-reveal{animation:reveal 0.5s ease both}
+.delay-1{animation-delay:0.1s}.delay-2{animation-delay:0.2s}.delay-3{animation-delay:0.3s}.delay-4{animation-delay:0.4s}
+
+/* SKELETON */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--bg3) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--r2)}
+
+/* TAG */
+.tag{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.6rem;border-radius:var(--r3);font-size:0.7rem;font-weight:600;border:1px solid}
+.tag-gold{background:#FEF9EC;color:#92650A;border-color:#F5D78E}
+

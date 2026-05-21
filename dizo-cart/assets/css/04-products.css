@@ -1,0 +1,89 @@
+/* ======================================================
+   Dizo Cart — 04-products.css
+   Extracted from dizo_cart_V47.html | Lines 215-297
+   DO NOT EDIT manually — auto-generated
+====================================================== */
+
+/* PRODUCTS */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all var(--transition);position:relative}
+.product-card:hover{box-shadow:var(--shadow2);transform:translateY(-3px);border-color:transparent}
+.product-img{aspect-ratio:1;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden;transition:transform var(--transition)}
+.product-card:hover .product-img{background:var(--bg3)}
+.product-badge{position:absolute;top:0.75rem;left:0.75rem;padding:0.2rem 0.6rem;border-radius:var(--r3);font-size:0.65rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase}
+.badge-sale{background:#FEF3C7;color:#92400E}
+.badge-new{background:#D1FAE5;color:#065F46}
+.badge-hot{background:#FEE2E2;color:#991B1B}
+.product-actions{position:absolute;top:0.75rem;right:0.75rem;display:flex;flex-direction:column;gap:0.4rem;opacity:0;transform:translateX(8px);transition:all var(--transition)}
+.product-card:hover .product-actions{opacity:1;transform:translateX(0)}
+.product-action-btn{width:32px;height:32px;background:var(--white);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all var(--transition)}
+.product-action-btn:hover{background:var(--text);color:var(--white);border-color:var(--text)}
+.product-body{padding:1rem 1rem 1.25rem}
+.product-cat{font-size:0.7rem;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.3rem}
+.product-name{font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;line-height:1.4;color:var(--text)}
+.product-rating{display:flex;align-items:center;gap:0.3rem;margin-bottom:0.75rem}
+.stars{color:var(--gold);font-size:0.75rem;letter-spacing:-1px}
+.rating-count{font-size:0.7rem;color:var(--text3)}
+.product-price{display:flex;align-items:center;gap:0.5rem}
+.price-current{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--text)}
+.price-old{font-size:0.8rem;color:var(--text3);text-decoration:line-through}
+.price-off{font-size:0.7rem;font-weight:700;color:#059669;background:#D1FAE5;padding:0.1rem 0.4rem;border-radius:4px}
+
+/* PRODUCT CARD BUTTONS — NEW TWO-BUTTON LAYOUT */
+.product-card-btns{display:flex;gap:0.5rem;margin-top:1rem;opacity:0;transform:translateY(4px);transition:all var(--transition);width:100%;overflow:hidden}
+.product-card:hover .product-card-btns{opacity:1;transform:translateY(0)}
+.btn-atc{flex:1;padding:0.55rem 0.25rem;background:var(--text);color:var(--white);border-radius:var(--r2);font-size:0.72rem;font-weight:600;transition:all var(--transition);display:flex;align-items:center;justify-content:center;gap:0.25rem;border:none;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-atc:hover{background:#333;transform:translateY(-1px)}
+.btn-buynow{flex:1;padding:0.55rem 0.25rem;background:linear-gradient(135deg,var(--gold),#d4a843);color:var(--white);border-radius:var(--r2);font-size:0.72rem;font-weight:700;transition:all var(--transition);display:flex;align-items:center;justify-content:center;gap:0.25rem;border:none;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-buynow:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(200,169,110,0.4)}
+
+/* FLASH SALE */
+.flash-sale-section{background:var(--text);color:var(--white);padding:4rem 2rem}
+.flash-inner{max-width:1280px;margin:0 auto}
+.flash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem}
+.flash-title{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--white);display:flex;align-items:center;gap:0.75rem}
+.flash-icon{color:var(--gold)}
+.countdown{display:flex;gap:0.5rem;align-items:center}
+.count-box{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r2);padding:0.5rem 0.75rem;text-align:center;min-width:52px}
+.count-num{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;line-height:1;color:var(--gold)}
+.count-label{font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.1rem}
+.count-sep{color:var(--gold);font-size:1.25rem;font-weight:700}
+.flash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.flash-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);overflow:hidden;transition:all var(--transition)}
+.flash-card:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px)}
+.flash-img{aspect-ratio:1;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.flash-body{padding:1rem}
+.flash-name{font-size:0.875rem;font-weight:600;color:var(--white);margin-bottom:0.4rem}
+.flash-price{display:flex;align-items:center;gap:0.5rem}
+.flash-current{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold)}
+.flash-old{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:line-through}
+.flash-off-badge{background:var(--gold);color:var(--white);font-size:0.65rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:var(--r3)}
+.flash-progress{margin-top:0.75rem}
+.flash-progress-label{display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(255,255,255,0.5);margin-bottom:0.4rem}
+.flash-bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
+.flash-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 1s ease}
+.flash-btns{display:flex;gap:0.4rem;margin-top:0.75rem}
+.flash-btn-atc{flex:1;padding:0.45rem;background:rgba(255,255,255,0.12);color:var(--white);border-radius:var(--r2);font-size:0.72rem;font-weight:600;transition:all var(--transition);border:1px solid rgba(255,255,255,0.2)}
+.flash-btn-atc:hover{background:rgba(255,255,255,0.22)}
+.flash-btn-buy{flex:1;padding:0.45rem;background:var(--gold);color:var(--white);border-radius:var(--r2);font-size:0.72rem;font-weight:700;transition:all var(--transition);border:none}
+.flash-btn-buy:hover{background:#d4a843;transform:translateY(-1px)}
+
+/* NEWSLETTER */
+.newsletter{background:var(--bg2);border-radius:24px;padding:4rem;text-align:center;margin:0 2rem;border:1px solid var(--border)}
+.newsletter h2{font-size:2rem;margin-bottom:0.75rem;letter-spacing:-0.02em}
+.newsletter p{color:var(--text2);max-width:420px;margin:0 auto 2rem;line-height:1.6}
+.newsletter-form{display:flex;gap:0.75rem;max-width:400px;margin:0 auto}
+.newsletter-form input{flex:1;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:var(--r2);font-size:0.875rem;font-family:inherit;outline:none;transition:border-color var(--transition);background:var(--white)}
+.newsletter-form input:focus{border-color:var(--text)}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testimonial-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:all var(--transition)}
+.testimonial-card:hover{box-shadow:var(--shadow2);transform:translateY(-2px)}
+.testimonial-stars{color:var(--gold);font-size:0.875rem;margin-bottom:0.75rem}
+.testimonial-text{font-size:0.9rem;color:var(--text2);line-height:1.6;margin-bottom:1rem;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:0.75rem}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:0.875rem;font-weight:700;color:var(--text)}
+.author-name{font-size:0.85rem;font-weight:600}
+.author-loc{font-size:0.75rem;color:var(--text3)}
+

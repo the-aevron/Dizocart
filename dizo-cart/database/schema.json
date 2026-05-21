@@ -1,0 +1,115 @@
+{
+  "_comment": "Dizo Cart — Database Schema v1.0",
+  "_description": "This schema is ready for Firebase Firestore, Supabase, or MongoDB.",
+  "_usage": "See /backend/README.md for integration guide.",
+
+  "collections": {
+
+    "products": {
+      "_description": "Main product catalog",
+      "fields": {
+        "id":          { "type": "number",   "required": true,  "auto": true,  "note": "Auto-increment or UUID" },
+        "name":        { "type": "string",   "required": true,  "maxLen": 200 },
+        "nameBn":      { "type": "string",   "required": false, "note": "Bangla name for bilingual support" },
+        "cat":         { "type": "enum",     "required": true,  "values": ["kitchen","home","gadgets","beauty"] },
+        "badge":       { "type": "enum",     "required": true,  "values": ["new","hot","sale","best"] },
+        "price":       { "type": "number",   "required": true,  "min": 0 },
+        "oldPrice":    { "type": "number",   "required": true,  "note": "Original price before discount" },
+        "emoji":       { "type": "string",   "required": false, "note": "Emoji fallback when no image" },
+        "desc":        { "type": "string",   "required": false, "maxLen": 2000 },
+        "specs":       { "type": "string",   "required": false, "note": "Key:Value pairs, one per line" },
+        "section":     { "type": "enum",     "required": false, "values": ["trending","bestSeller","both"] },
+        "stock":       { "type": "number",   "required": false, "default": 100 },
+        "status":      { "type": "enum",     "required": true,  "values": ["active","draft","archived"], "default": "active" },
+        "reviews":     { "type": "number",   "required": false, "default": 0 },
+        "rating":      { "type": "number",   "required": false, "default": 4.5 },
+        "image1":      { "type": "string",   "required": false, "note": "Primary image URL" },
+        "image2":      { "type": "string",   "required": false, "note": "Hover / secondary image URL" },
+        "image3":      { "type": "string",   "required": false },
+        "image4":      { "type": "string",   "required": false },
+        "isFlashSale": { "type": "boolean",  "required": false, "default": false },
+        "flashPrice":  { "type": "number",   "required": false, "note": "Flash sale override price" },
+        "createdAt":   { "type": "timestamp","required": true,  "auto": true },
+        "updatedAt":   { "type": "timestamp","required": true,  "auto": true }
+      }
+    },
+
+    "orders": {
+      "_description": "Customer orders",
+      "fields": {
+        "id":          { "type": "string",   "required": true,  "note": "e.g. #DC1001" },
+        "name":        { "type": "string",   "required": true },
+        "phone":       { "type": "string",   "required": true },
+        "email":       { "type": "string",   "required": false },
+        "address":     { "type": "string",   "required": true },
+        "zone":        { "type": "enum",     "required": true,  "values": ["insideDhaka","outsideDhaka"] },
+        "items":       { "type": "array",    "required": true,  "note": "[{id, name, price, qty}]" },
+        "subtotal":    { "type": "number",   "required": true },
+        "delivery":    { "type": "number",   "required": true },
+        "discount":    { "type": "number",   "required": false, "default": 0 },
+        "total":       { "type": "number",   "required": true },
+        "payment":     { "type": "enum",     "required": true,  "values": ["cod","bkash","nagad","rocket","card","stripe"] },
+        "coupon":      { "type": "string",   "required": false },
+        "notes":       { "type": "string",   "required": false },
+        "status":      { "type": "enum",     "required": true,  "values": ["pending","processing","shipped","delivered","cancelled","refunded"], "default": "pending" },
+        "timestamp":   { "type": "timestamp","required": true,  "auto": true },
+        "updatedAt":   { "type": "timestamp","required": true,  "auto": true }
+      }
+    },
+
+    "customers": {
+      "_description": "Customer profiles (auto-created from orders)",
+      "fields": {
+        "id":          { "type": "string",   "required": true,  "note": "Phone number as ID" },
+        "name":        { "type": "string",   "required": true },
+        "phone":       { "type": "string",   "required": true },
+        "email":       { "type": "string",   "required": false },
+        "orders":      { "type": "array",    "required": false, "note": "Array of order IDs" },
+        "totalSpent":  { "type": "number",   "required": false, "default": 0 },
+        "createdAt":   { "type": "timestamp","required": true,  "auto": true }
+      }
+    },
+
+    "users": {
+      "_description": "Registered user accounts (for auth system)",
+      "fields": {
+        "uid":         { "type": "string",   "required": true,  "note": "Firebase UID or UUID" },
+        "email":       { "type": "string",   "required": true },
+        "phone":       { "type": "string",   "required": false },
+        "firstName":   { "type": "string",   "required": false },
+        "lastName":    { "type": "string",   "required": false },
+        "role":        { "type": "enum",     "required": true,  "values": ["customer","admin"], "default": "customer" },
+        "wishlist":    { "type": "array",    "required": false, "note": "Array of product IDs" },
+        "createdAt":   { "type": "timestamp","required": true,  "auto": true }
+      }
+    },
+
+    "reviews": {
+      "_description": "Product reviews and ratings",
+      "fields": {
+        "id":          { "type": "string",   "required": true,  "auto": true },
+        "productId":   { "type": "number",   "required": true },
+        "userId":      { "type": "string",   "required": false },
+        "name":        { "type": "string",   "required": true },
+        "rating":      { "type": "number",   "required": true,  "min": 1, "max": 5 },
+        "text":        { "type": "string",   "required": true },
+        "verified":    { "type": "boolean",  "required": false, "default": false },
+        "createdAt":   { "type": "timestamp","required": true,  "auto": true }
+      }
+    },
+
+    "coupons": {
+      "_description": "Discount coupon codes",
+      "fields": {
+        "code":        { "type": "string",   "required": true,  "note": "Coupon code string" },
+        "type":        { "type": "enum",     "required": true,  "values": ["percent","flat"] },
+        "value":       { "type": "number",   "required": true,  "note": "20 = 20% or ৳20 off" },
+        "minOrder":    { "type": "number",   "required": false, "default": 0 },
+        "maxUses":     { "type": "number",   "required": false, "note": "null = unlimited" },
+        "usedCount":   { "type": "number",   "required": false, "default": 0 },
+        "active":      { "type": "boolean",  "required": true,  "default": true },
+        "expiresAt":   { "type": "timestamp","required": false }
+      }
+    }
+  }
+}

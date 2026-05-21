@@ -1,0 +1,70 @@
+/* ======================================================
+   Dizo Cart — 08-ui-components.css
+   Extracted from dizo_cart_V47.html | Lines 393-456
+   DO NOT EDIT manually — auto-generated
+====================================================== */
+
+/* TOAST */
+.toast-container{position:fixed;bottom:2rem;right:2rem;z-index:300;display:flex;flex-direction:column;gap:0.5rem}
+.toast{background:var(--text);color:var(--white);padding:0.75rem 1.25rem;border-radius:var(--r);font-size:0.875rem;font-weight:500;display:flex;align-items:center;gap:0.5rem;transform:translateX(calc(100% + 2rem));transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow2);max-width:300px}
+.toast.show{transform:translateX(0)}
+
+/* WISHLIST */
+.wish-active{color:#E24B4A!important}
+
+/* THEME SWITCHER */
+.theme-switcher{display:flex;gap:0.4rem;align-items:center}
+.theme-dot{width:14px;height:14px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all var(--transition)}
+.theme-dot:hover,.theme-dot.active{border-color:var(--text);transform:scale(1.2)}
+
+/* LANGUAGE */
+.lang-bangla{font-family:'Hind Siliguri',sans-serif}
+
+/* QUICK VIEW MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:180;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s ease;padding:2rem}
+.modal-backdrop.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:24px;max-width:700px;width:100%;max-height:90vh;overflow:auto;transform:translateY(16px);transition:transform 0.3s ease;display:grid;grid-template-columns:1fr 1fr}
+.modal-backdrop.open .modal{transform:translateY(0)}
+.modal-img{background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:5rem;border-radius:24px 0 0 24px}
+.modal-body{padding:2rem}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;background:var(--bg2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;transition:all var(--transition)}
+.modal-close:hover{background:var(--text);color:var(--white)}
+.modal-cat{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:0.5rem}
+.modal-name{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.75rem}
+.modal-desc{font-size:0.875rem;color:var(--text2);line-height:1.6;margin-bottom:1.25rem}
+
+/* CHECKOUT MODAL */
+.checkout-modal{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s ease;padding:1rem}
+.checkout-modal.open{opacity:1;pointer-events:all}
+.checkout-box{background:var(--white);border-radius:24px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:2.5rem;transform:translateY(16px);transition:transform 0.3s ease;position:relative}
+.checkout-modal.open .checkout-box{transform:translateY(0)}
+.checkout-step{display:none}
+.checkout-step.active{display:block}
+.checkout-steps-bar{display:flex;gap:0;margin-bottom:2rem}
+.step-indicator{flex:1;text-align:center;font-size:0.72rem;font-weight:600;color:var(--text3);padding-bottom:0.5rem;border-bottom:2px solid var(--border);transition:all var(--transition)}
+.step-indicator.active{color:var(--text);border-color:var(--text)}
+.step-indicator.done{color:var(--gold);border-color:var(--gold)}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:0.8rem;font-weight:600;margin-bottom:0.4rem;color:var(--text2)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:0.65rem 0.875rem;border:1.5px solid var(--border);border-radius:var(--r2);font-size:0.875rem;font-family:inherit;outline:none;transition:border-color var(--transition);background:var(--bg)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--text);background:var(--white)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.payment-methods{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem}
+.payment-option{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:var(--r2);cursor:pointer;transition:all var(--transition);font-size:0.875rem;font-weight:500}
+.payment-option:hover{border-color:var(--text)}
+.payment-option.selected{border-color:var(--gold);background:#FEF9EC}
+.payment-option input{margin:0}
+.order-confirm-box{text-align:center;padding:1rem 0}
+.order-confirm-icon{font-size:4rem;margin-bottom:1rem;animation:heartPop 0.5s ease}
+.order-tracking{display:flex;justify-content:space-between;margin-top:1.5rem;position:relative}
+.order-tracking::before{content:'';position:absolute;top:14px;left:10%;right:10%;height:2px;background:var(--border)}
+.track-step{display:flex;flex-direction:column;align-items:center;gap:0.4rem;z-index:1}
+.track-dot{width:28px;height:28px;border-radius:50%;background:var(--bg2);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.75rem;transition:all var(--transition)}
+.track-dot.done{background:var(--gold);border-color:var(--gold);color:var(--white)}
+.track-dot.active{background:var(--text);border-color:var(--text);color:var(--white)}
+.track-label{font-size:0.65rem;color:var(--text3);font-weight:600}
+
+/* WISHLIST PANEL */
+.wishlist-panel{position:fixed;left:0;top:0;bottom:0;width:360px;background:var(--white);border-right:1px solid var(--border);z-index:150;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}
+.wishlist-panel.open{transform:translateX(0)}
+

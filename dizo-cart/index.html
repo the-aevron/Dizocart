@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="description" content="Dizo Cart — Premium E-Commerce for Kitchen, Home, Gadgets & Beauty. Shop the best products in Bangladesh.">
+<meta property="og:title" content="Dizo Cart — Premium E-Commerce">
+<meta property="og:description" content="Discover curated kitchen essentials, smart gadgets, home decor, and beauty products.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1A1A18">
+<title>Dizo Cart</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- =====================================================
+     DIZO CART — MODULAR CSS ARCHITECTURE
+     Each file handles a specific UI domain.
+     Edit individual files for targeted changes.
+===================================================== -->
+<link rel="stylesheet" href="assets/css/01-variables-base.css">
+<link rel="stylesheet" href="assets/css/02-navbar.css">
+<link rel="stylesheet" href="assets/css/03-hero-sections.css">
+<link rel="stylesheet" href="assets/css/04-products.css">
+<link rel="stylesheet" href="assets/css/05-footer-brands.css">
+<link rel="stylesheet" href="assets/css/06-cart.css">
+<link rel="stylesheet" href="assets/css/07-animations.css">
+<link rel="stylesheet" href="assets/css/08-ui-components.css">
+<link rel="stylesheet" href="assets/css/09-admin.css">
+<link rel="stylesheet" href="assets/css/10-pdp.css">
+<link rel="stylesheet" href="assets/css/11-responsive.css">
+<link rel="stylesheet" href="assets/css/12-banner-slider.css">
+</head>
+<body>
+<body>
+
+<div class="main-site-content" id="mainSiteContent">
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>🚚 Free delivery on orders over ৳999 — <strong>Summer Sale Up to 60% OFF!</strong></div>
+    <div style="display:flex;align-items:center;gap:1.5rem">
+      <div class="top-bar-lang">
+        <button id="langBtn" onclick="toggleLang()">বাং</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV — DESKTOP (dark, Gadgets-style) -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">Dizo <span>Cart</span></a>
+    <div class="nav-search-bar" id="navSearchBar">
+      <select class="nav-search-cat" id="navSearchCat" onchange="setNavCat(this.value)">
+        <option value="all">All</option>
+        <option value="kitchen">Kitchen</option>
+        <option value="gadgets">Gadgets</option>
+        <option value="beauty">Beauty</option>
+        <option value="home">Home</option>
+      </select>
+      <div class="nav-search-divider"></div>
+      <input class="nav-search-input" id="navSearchInput" type="text"
+        placeholder="Search products, brands…"
+        autocomplete="off"
+        oninput="navSearchLive(this.value)"
+        onkeydown="navSearchKey(event)"
+        onfocus="navSearchFocus()"
+        onblur="setTimeout(navSearchBlur,150)">
+      <button class="nav-search-btn" onclick="navSearchSubmit()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="nav-search-dropdown" id="navSearchDropdown"></div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="openWishlist()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span>Wishlist</span>
+      </button>
+      <button class="nav-btn cart-badge" onclick="openCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Cart</span>
+        <div class="badge" id="cartCount">3</div>
+      </button>
+      <button class="btn-primary" onclick="openLoginModal()">Sign In</button>
+    </div>
+  </div>
+</nav>
+
+<!-- DESKTOP CATEGORY NAV BAR -->
+<div class="nav-cats">
+  <div class="nav-cats-inner">
+    <span class="nav-cat-link" onclick="openCategoryPage('kitchen')">🍳 Kitchen Essentials</span>
+    <span class="nav-cat-link" onclick="openCategoryPage('home')">🏠 Home Essentials</span>
+    <span class="nav-cat-link" onclick="openCategoryPage('gadgets')">📱 Gadget Items</span>
+    <span class="nav-cat-link" onclick="openCategoryPage('beauty')">💄 Beauty &amp; Skincare</span>
+    <span class="nav-cat-link" onclick="showToast('New Arrivals coming soon!')">✨ New Arrivals</span>
+    <span class="nav-cat-link" onclick="showToast('Brands page coming soon!')">🏷️ Brands</span>
+    <span class="nav-cat-link" onclick="openTrackOrder()">📦 Track Order</span>
+    <span class="nav-cat-link" onclick="openContact()">💬 Contact</span>
+    <span class="nav-cat-link sale" onclick="showToast('Flash Sale is live!')">🔥 Sale</span>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-top">
+    <button class="mobile-hamburger" onclick="openMobileMenu()" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="mobile-logo">Dizo <span>Cart</span></div>
+    <button class="mobile-cart-btn cart-badge" onclick="openCart()" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <div class="badge" id="mobileCartCount">3</div>
+    </button>
+  </div>
+  <div class="mobile-search-row" style="position:relative">
+    <div class="mobile-search-wrap">
+      <input type="text" id="mobileSearchInput" placeholder="Search product, brand, and more…"
+        oninput="mobileSearchLive(this.value)"
+        onkeydown="mobileSearchKey(event)"
+        onfocus="mobileSearchFocus()"
+        onblur="setTimeout(mobileSearchBlur,300)"
+        autocomplete="off">
+      <button onclick="mobileSearchSubmit()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <div class="mobile-search-dropdown" id="mobileSearchDropdown"></div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+<!-- MOBILE SLIDE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <div class="mobile-menu-logo">Dizo <span>Cart</span></div>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-section">
+    <div class="mobile-menu-section-title">Categories</div>
+    <button class="mobile-menu-link" onclick="openCategoryPage('kitchen');closeMobileMenu(false)"><span class="menu-icon">🍳</span>Kitchen Essentials</button>
+    <button class="mobile-menu-link" onclick="openCategoryPage('home');closeMobileMenu(false)"><span class="menu-icon">🏠</span>Home Essentials</button>
+    <button class="mobile-menu-link" onclick="openCategoryPage('gadgets');closeMobileMenu(false)"><span class="menu-icon">📱</span>Gadget Items</button>
+    <button class="mobile-menu-link" onclick="openCategoryPage('beauty');closeMobileMenu(false)"><span class="menu-icon">💄</span>Beauty &amp; Skincare</button>
+    <button class="mobile-menu-link sale-link" onclick="showToast('Flash Sale is live!');closeMobileMenu()"><span class="menu-icon">🔥</span>Sale &amp; Offers</button>
+  </div>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-menu-section">
+    <div class="mobile-menu-section-title">Account</div>
+    <button class="mobile-menu-link" onclick="openLoginModal();closeMobileMenu(false)"><span class="menu-icon">👤</span>Sign In / Register</button>
+    <button class="mobile-menu-link" onclick="openWishlist();closeMobileMenu(false)"><span class="menu-icon">❤️</span>Wishlist</button>
+    <button class="mobile-menu-link" onclick="openTrackOrder();closeMobileMenu()"><span class="menu-icon">📦</span>Track Order</button>
+    <button class="mobile-menu-link" onclick="openCart();closeMobileMenu(false)"><span class="menu-icon">🛒</span>My Cart</button>
+  </div>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-menu-section">
+    <div class="mobile-menu-section-title">Help</div>
+    <button class="mobile-menu-link" onclick="openContact();closeMobileMenu()"><span class="menu-icon">💬</span>Contact Us</button>
+    <button class="mobile-menu-link" onclick="openWhatsApp();closeMobileMenu()"><span class="menu-icon">📲</span>WhatsApp Support</button>
+  </div>
+  <div class="mobile-menu-bottom">
+    <button class="mobile-menu-bottom-btn" onclick="openLoginModal();closeMobileMenu(false)">Sign In to Your Account</button>
+    <button class="mobile-menu-bottom-btn outline" onclick="showToast('Register coming soon!');closeMobileMenu()">Create Account</button>
+  </div>
+</div>
+
+
+
+<!-- HERO BANNER SECTION -->
+<section class="hero-banner-section">
+  <div class="hero-banner-inner">
+    <!-- Main Slider -->
+    <div class="banner-slider-wrap">
+      <div class="banner-slider" id="bannerSlider">
+
+        <!-- Slide 1: Flash Sale -->
+        <div class="banner-slide active" style="background:linear-gradient(135deg,#0a2a6e 0%,#1a4aae 60%,#2563EB 100%)">
+          <div class="banner-slide-content">
+            <div class="banner-tag">GREAT DEALS</div>
+            <div class="banner-headline">Flash Sale</div>
+            <div class="banner-sub">ON KITCHEN ESSENTIALS</div>
+            <div class="banner-discount">Upto <span>60%</span> Discount</div>
+            <div class="banner-perks">
+              <span>🗓️ 36 Month EMI</span>
+              <span>🛵 Free Delivery</span>
+              <span>✅ 2 Year Warranty</span>
+            </div>
+          </div>
+          <div class="banner-slide-visual">
+            <div class="banner-emoji-big">🍳</div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Gadgets -->
+        <div class="banner-slide" style="background:linear-gradient(135deg,#0d1b2a 0%,#1b3a5c 60%,#2d6a9f 100%)">
+          <div class="banner-slide-content">
+            <div class="banner-tag">NEW ARRIVAL</div>
+            <div class="banner-headline">Smart Gadgets</div>
+            <div class="banner-sub">LATEST TECH COLLECTION</div>
+            <div class="banner-discount">Upto <span>45%</span> Off</div>
+            <div class="banner-perks">
+              <span>📱 Latest Models</span>
+              <span>🔒 Genuine Products</span>
+              <span>🚀 Express Delivery</span>
+            </div>
+          </div>
+          <div class="banner-slide-visual">
+            <div class="banner-emoji-big">📱</div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Beauty -->
+        <div class="banner-slide" style="background:linear-gradient(135deg,#4a0e3c 0%,#8b1a6b 60%,#c0456b 100%)">
+          <div class="banner-slide-content">
+            <div class="banner-tag">BEST SELLERS</div>
+            <div class="banner-headline">Beauty & Care</div>
+            <div class="banner-sub">PREMIUM SKINCARE</div>
+            <div class="banner-discount">Upto <span>50%</span> Off</div>
+            <div class="banner-perks">
+              <span>💄 Authentic Brands</span>
+              <span>🌿 Natural Ingredients</span>
+              <span>⭐ 4.9 Rating</span>
+            </div>
+          </div>
+          <div class="banner-slide-visual">
+            <div class="banner-emoji-big">💄</div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Home -->
+        <div class="banner-slide" style="background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4f 60%,#4a9f7a 100%)">
+          <div class="banner-slide-content">
+            <div class="banner-tag">SUMMER SALE</div>
+            <div class="banner-headline">Home Essentials</div>
+            <div class="banner-sub">TRANSFORM YOUR SPACE</div>
+            <div class="banner-discount">Upto <span>40%</span> Off</div>
+            <div class="banner-perks">
+              <span>🏠 Quality Assured</span>
+              <span>🔄 Easy Returns</span>
+              <span>💬 24/7 Support</span>
+            </div>
+          </div>
+          <div class="banner-slide-visual">
+            <div class="banner-emoji-big">🏠</div>
+          </div>
+        </div>
+
+        <div class="banner-dots-area" id="bannerDots"></div>
+        <button class="banner-arrow banner-prev" onclick="bannerSlide(-1)">&#8249;</button>
+        <button class="banner-arrow banner-next" onclick="bannerSlide(1)">&#8250;</button>
+      </div>
+    </div>
+
+    <!-- Right Side Banners (Desktop Only) -->
+    <div class="banner-side-panels">
+      <div class="side-banner side-banner-1" onclick="openCategoryPage('gadgets')">
+        <div class="side-banner-text">
+          <div class="side-banner-title">iPhone রিমেয়ারে<br>আপনার পাশে</div>
+          <div class="side-banner-highlight">Dizo Cart Care</div>
+          <div class="side-banner-sub">☎ 09678-149 149</div>
+        </div>
+        <div style="font-size:2.5rem;position:absolute;right:0.75rem;bottom:0.75rem;opacity:0.3">🔧</div>
+      </div>
+      <div class="side-banner side-banner-2" onclick="openCategoryPage('kitchen')">
+        <div style="font-size:2.8rem;margin-bottom:0.5rem">🍲</div>
+        <div class="side-banner-highlight" style="font-size:1.1rem">Induction Cooker</div>
+        <div class="side-banner-title" style="font-size:0.75rem;opacity:0.8;margin-top:0.25rem">Instant Heat, Instant Taste</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO STRIP (like Gadgets.com.bd) -->
+<div class="promo-services-strip reveal">
+  <div class="promo-services-inner">
+    <div class="promo-service-item">
+      <div class="promo-service-icon">💳</div>
+      <span>36 Months EMI</span>
+    </div>
+    <div class="promo-service-sep"></div>
+    <div class="promo-service-item">
+      <div class="promo-service-icon">🛵</div>
+      <span>Fastest Home Delivery</span>
+    </div>
+    <div class="promo-service-sep"></div>
+    <div class="promo-service-item">
+      <div class="promo-service-icon">🔄</div>
+      <span>Exchange Facility</span>
+    </div>
+    <div class="promo-service-sep"></div>
+    <div class="promo-service-item">
+      <div class="promo-service-icon">🏷️</div>
+      <span>Best Price Deals</span>
+    </div>
+    <div class="promo-service-sep"></div>
+    <div class="promo-service-item">
+      <div class="promo-service-icon">🎧</div>
+      <span>After-Sales Service</span>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- BRANDS -->
+<div class="brands-strip reveal">
+  <span class="brand-logo">Samsung</span><span class="brand-sep">·</span>
+  <span class="brand-logo">Philips</span><span class="brand-sep">·</span>
+  <span class="brand-logo">Sony</span><span class="brand-sep">·</span>
+  <span class="brand-logo">L'Oréal</span><span class="brand-sep">·</span>
+  <span class="brand-logo">Lakme</span><span class="brand-sep">·</span>
+  <span class="brand-logo">Milton</span><span class="brand-sep">·</span>
+  <span class="brand-logo">Prestige</span><span class="brand-sep">·</span>
+  <span class="brand-logo">Pigeon</span>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section reveal">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Shop By</div>
+      <h2 class="section-title">Featured Categories</h2>
+    </div>
+    <a href="#" class="view-all">View All →</a>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card hover-lift" onclick="openCategoryPage('kitchen')">
+      <div class="cat-img">🍳</div>
+      <div class="cat-body">
+        <div class="cat-name">Kitchen Essentials</div>
+        <div class="cat-count" id="catCount-kitchen">0 Products</div>
+      </div>
+    </div>
+    <div class="cat-card hover-lift" onclick="openCategoryPage('home')">
+      <div class="cat-img">🏠</div>
+      <div class="cat-body">
+        <div class="cat-name">Home Essentials</div>
+        <div class="cat-count" id="catCount-home">0 Products</div>
+      </div>
+    </div>
+    <div class="cat-card hover-lift" onclick="openCategoryPage('gadgets')">
+      <div class="cat-img">📱</div>
+      <div class="cat-body">
+        <div class="cat-name">Gadget Items</div>
+        <div class="cat-count" id="catCount-gadgets">0 Products</div>
+      </div>
+    </div>
+    <div class="cat-card hover-lift" onclick="openCategoryPage('beauty')">
+      <div class="cat-img">💄</div>
+      <div class="cat-body">
+        <div class="cat-name">Beauty & Skincare</div>
+        <div class="cat-count" id="catCount-beauty">0 Products</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING PRODUCTS -->
+<section class="section reveal" style="padding-top:0">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Most Popular</div>
+      <h2 class="section-title">Trending Products</h2>
+    </div>
+    <div style="display:flex;gap:0.5rem">
+      <button id="filterAll" onclick="setFilter('all')" style="padding:0.35rem 0.875rem;border:1.5px solid var(--text);border-radius:var(--r3);font-size:0.75rem;font-weight:600;background:var(--text);color:var(--white);cursor:pointer;transition:all var(--transition)">All</button>
+      <button onclick="setFilter('kitchen')" style="padding:0.35rem 0.875rem;border:1.5px solid var(--border);border-radius:var(--r3);font-size:0.75rem;font-weight:500;cursor:pointer;transition:all var(--transition);background:transparent;color:var(--text2)">Kitchen</button>
+      <button onclick="setFilter('gadgets')" style="padding:0.35rem 0.875rem;border:1.5px solid var(--border);border-radius:var(--r3);font-size:0.75rem;font-weight:500;cursor:pointer;transition:all var(--transition);background:transparent;color:var(--text2)">Gadgets</button>
+      <button onclick="setFilter('beauty')" style="padding:0.35rem 0.875rem;border:1.5px solid var(--border);border-radius:var(--r3);font-size:0.75rem;font-weight:500;cursor:pointer;transition:all var(--transition);background:transparent;color:var(--text2)">Beauty</button>
+    </div>
+  </div>
+  <div class="products-grid" id="productGrid"></div>
+</section>
+
+<!-- FLASH SALE -->
+<div class="flash-sale-section reveal">
+  <div class="flash-inner">
+    <div class="flash-header">
+      <div class="flash-title" id="flashSaleTitle">
+        <span class="flash-icon">⚡</span> <span id="flashSaleTitleText">Flash Sale</span>
+      </div>
+      <div class="countdown">
+        <div class="count-box"><div class="count-num" id="cdH">08</div><div class="count-label">Hours</div></div>
+        <span class="count-sep">:</span>
+        <div class="count-box"><div class="count-num" id="cdM">34</div><div class="count-label">Mins</div></div>
+        <span class="count-sep">:</span>
+        <div class="count-box"><div class="count-num" id="cdS">22</div><div class="count-label">Secs</div></div>
+      </div>
+    </div>
+    <div class="flash-grid" id="flashSaleGrid">
+      <!-- Populated by applyFlashSaleToPage() — add products via Admin → Products → ⚡ Add to Flash Sale -->
+    </div>
+  </div>
+</div>
+
+<!-- BEST SELLERS -->
+<section class="section reveal" style="padding-top:4rem">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Top Picks</div>
+      <h2 class="section-title">Best Sellers</h2>
+    </div>
+    <a href="#" class="view-all">View All →</a>
+  </div>
+  <div class="products-grid" id="bestSellersGrid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section reveal" style="padding-top:0">
+  <div class="section-header">
+    <div>
+      <div class="section-label">What Customers Say</div>
+      <h2 class="section-title">Testimonials</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card hover-lift">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Absolutely love the kitchen products! The quality is premium and delivery was super fast. Dizo Cart is my go-to for home essentials."</p>
+      <div class="testimonial-author"><div class="author-avatar">RA</div><div><div class="author-name">Rahima Akter</div><div class="author-loc">Dhaka, Bangladesh</div></div></div>
+    </div>
+    <div class="testimonial-card hover-lift">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The skincare products are authentic and exactly as described. Great packaging and prompt customer support. Highly recommend!"</p>
+      <div class="testimonial-author"><div class="author-avatar">SM</div><div><div class="author-name">Sumaiya Mim</div><div class="author-loc">Chittagong</div></div></div>
+    </div>
+    <div class="testimonial-card hover-lift">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Best gadget store online! Got wireless earbuds at an amazing price. The website is so easy to navigate. Will definitely order again."</p>
+      <div class="testimonial-author"><div class="author-avatar">TH</div><div><div class="author-name">Tanvir Hasan</div><div class="author-loc">Sylhet</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section" style="padding-top:0">
+  <div class="newsletter reveal">
+    <p class="section-label" style="text-align:center;margin-bottom:0.5rem">Stay Updated</p>
+    <h2>Get Exclusive Deals & Offers</h2>
+    <p>Subscribe to our newsletter and be the first to know about flash sales, new arrivals, and special discounts.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address">
+      <button class="btn-primary" style="white-space:nowrap" onclick="subscribeNewsletter()">Subscribe</button>
+    </div>
+    <p style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Dizo <span>Cart</span></div>
+        <p class="footer-desc">Bangladesh's premier destination for premium kitchen, home, gadget, and beauty products. Quality you can trust, prices you'll love.</p>
+        <div class="footer-social">
+          <div class="social-btn" onclick="showToast('📘 Follow us on Facebook!')">f</div>
+          <div class="social-btn" onclick="showToast('💼 Connect on LinkedIn!')">in</div>
+          <div class="social-btn" onclick="showToast('📸 Follow on Instagram!')">📸</div>
+          <div class="social-btn" onclick="showToast('▶ Subscribe on YouTube!')">▶</div>
+          <div class="social-btn" onclick="openWhatsApp()">💬</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <div class="footer-links">
+          <a href="#" onclick="openCategoryPage('kitchen')">Kitchen Essentials</a>
+          <a href="#" onclick="openCategoryPage('home')">Home Essentials</a>
+          <a href="#" onclick="openCategoryPage('gadgets')">Gadget Items</a>
+          <a href="#" onclick="openCategoryPage('beauty')">Beauty & Skincare</a>
+          <a href="#">Flash Sale</a>
+          <a href="#">New Arrivals</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <div class="footer-links">
+          <a href="#" onclick="openLoginModal()">My Account</a>
+          <a href="#">Order History</a>
+          <a href="#" onclick="openWishlist()">Wishlist</a>
+          <a href="#" onclick="openTrackOrder()">Track Order</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <div class="footer-links">
+          <a href="#" onclick="openContact()">About Us</a>
+          <a href="#" onclick="openContact()">Contact</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Dizo Cart. All rights reserved. Made with ❤️ in Bangladesh</p>
+      <div class="payment-icons">
+        <span class="pay-icon">bKash</span>
+        <span class="pay-icon">Nagad</span>
+        <span class="pay-icon">Rocket</span>
+        <span class="pay-icon">Visa</span>
+        <span class="pay-icon">Master</span>
+        <span class="pay-icon">COD</span>
+        <span class="pay-icon">SSL</span>
+        <span class="pay-icon">Stripe</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT BTN -->
+<a onclick="openWhatsApp()" style="position:fixed;bottom:5.5rem;right:1.5rem;z-index:120;width:48px;height:48px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(37,211,102,0.4);cursor:pointer;transition:all 0.3s" title="WhatsApp Support">💬</a>
+
+</div><!-- END main-site-content -->
+
+<!-- MOBILE BOTTOM TAB BAR -->
+<nav class="mobile-tab-bar" id="mobileTabBar">
+  <button class="mob-tab-item active" id="tabHome" onclick="activeMobTab('home');goToHomePage()">
+    <span class="mob-tab-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="fill:currentColor">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </span>
+    <span>Home</span>
+  </button>
+  <button class="mob-tab-item" id="tabCategory" onclick="openCategorySheet()">
+    <span class="mob-tab-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" stroke-width="1.8"/>
+        <rect x="14" y="3" width="7" height="7" rx="1.5" stroke-width="1.8"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5" stroke-width="1.8"/>
+        <rect x="14" y="14" width="7" height="7" rx="1.5" stroke-width="1.8"/>
+      </svg>
+    </span>
+    <span>Category</span>
+  </button>
+  <button class="mob-tab-item" id="tabOffer" onclick="scrollToFlashSale()">
+    <span class="mob-tab-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke-width="1.8"/>
+        <path d="M12 7v5l3 3" stroke-width="1.8"/>
+        <path d="M8.5 3.5 Q12 2 15.5 3.5" stroke-width="1.6" fill="none"/>
+      </svg>
+    </span>
+    <span>Offer</span>
+  </button>
+  <button class="mob-tab-item" id="tabSignin" onclick="openLoginModal()">
+    <span class="mob-tab-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="8" r="4" stroke-width="1.8"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-width="1.8"/>
+      </svg>
+    </span>
+    <span>Sign In</span>
+  </button>
+</nav>
+
+<!-- CATEGORY PAGE -->
+<div class="category-page" id="categoryPage">
+  <div class="cat-page-topbar">
+    <button class="cat-page-back" onclick="closeCategoryPageAnimated();history.pushState({page:'home'},'',window.location.pathname+window.location.search)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <div class="cat-page-breadcrumb">
+      Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="m9 18 6-6-6-6"/></svg>
+      <span id="catPageBreadcrumb">Category</span>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:0.5rem">
+      <button class="nav-btn cart-badge" onclick="openCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Cart
+        <div class="badge" id="catPageCartCount">0</div>
+      </button>
+    </div>
+  </div>
+
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="cat-page-hero" id="catPageHero">
+      <div class="cat-page-hero-icon" id="catPageIcon">🍳</div>
+      <div class="cat-page-hero-content">
+        <h1 id="catPageTitle">Kitchen Essentials</h1>
+        <p id="catPageDesc">Discover our curated collection</p>
+        <div class="cat-page-hero-tags" id="catPageTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-page-body">
+    <!-- Sub-categories -->
+    <div id="catPageSubcats" class="cat-subcats-wrap"></div>
+
+    <div class="cat-page-toolbar">
+      <div class="cat-page-count" id="catPageCount"><strong>0</strong> products found</div>
+      <div class="cat-page-sort">
+        <label>Sort by:</label>
+        <select id="catPageSort" onchange="sortCategoryProducts()">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+          <option value="discount">Biggest Discount</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="cat-page-grid" id="catPageGrid"></div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY REMOVED — replaced with inline navbar search -->
+
+
+<!-- CART OVERLAY + DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Cart</span>
+    <button style="font-size:1.25rem;color:var(--text2);cursor:pointer" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="coupon-row">
+      <input type="text" id="couponInput" placeholder="Coupon code (try DIZO20)">
+      <button onclick="applyCoupon()">Apply</button>
+    </div>
+    <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">৳0</span></div>
+    <div class="cart-total-row"><span>Discount</span><span id="cartDiscount" style="color:#059669">-৳0</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span>৳60</span></div>
+    <div class="cart-total-row final"><span>Total</span><span id="cartTotal">৳0</span></div>
+    <div class="cart-cta">
+      <button class="btn-primary" style="width:100%;padding:0.75rem;font-size:0.875rem" onclick="closeCart();openCheckout()">Proceed to Checkout</button>
+      <button class="btn-outline" style="width:100%;padding:0.75rem;font-size:0.875rem" onclick="closeCart()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- WISHLIST PANEL -->
+<div class="cart-overlay" id="wishlistOverlay" onclick="closeWishlist()"></div>
+<div class="wishlist-panel" id="wishlistPanel">
+  <div class="cart-header">
+    <span class="cart-title">♡ Wishlist</span>
+    <button style="font-size:1.25rem;color:var(--text2);cursor:pointer" onclick="closeWishlist()">✕</button>
+  </div>
+  <div class="cart-items" id="wishlistItems" style="flex:1;overflow-y:auto;padding:1.25rem"></div>
+  <div style="padding:1.25rem;border-top:1px solid var(--border)">
+    <button class="btn-primary" style="width:100%;padding:0.75rem" onclick="addAllWishToCart()">Add All to Cart</button>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<!-- ADMIN LOGIN GATE -->
+<!-- ADMIN LOGIN GATE — Premium Hidden UI (V39 Security) -->
+<div class="admin-login-gate" id="adminLoginGate">
+  <div class="dizo-admin-login-card">
+    <div class="dizo-al-bg"></div>
+    <!-- Logo Area -->
+    <div class="dizo-al-logo">
+      <div class="dizo-al-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="dizo-al-logo-text">Dizo <span>Cart</span></div>
+      <div class="dizo-al-logo-sub">Admin Console</div>
+    </div>
+    <!-- Login Form -->
+    <div class="dizo-al-form">
+      <div class="dizo-al-title">Secure Access</div>
+      <div class="dizo-al-subtitle">Enter your admin credentials to continue</div>
+      <!-- Password Field -->
+      <div class="dizo-al-field-wrap">
+        <label class="dizo-al-label">Admin Password</label>
+        <div class="dizo-al-input-wrap">
+          <div class="dizo-al-input-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <input type="password" id="adminPwdInput" class="dizo-al-input"
+            placeholder="Enter admin password"
+            onkeydown="if(event.key==='Enter')checkAdminPassword()"
+            autocomplete="current-password">
+          <button type="button" class="dizo-al-eye" id="adminPwdEye" onclick="toggleAdminPwdVisibility()" aria-label="Toggle password">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <!-- Error Message -->
+      <div class="dizo-al-error" id="adminLoginError">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Incorrect password. Please try again.
+      </div>
+      <!-- Remember Session + Forgot -->
+      <div class="dizo-al-options">
+        <label class="dizo-al-remember">
+          <input type="checkbox" id="adminRememberSession">
+          <span class="dizo-al-toggle"></span>
+          <span>Stay signed in</span>
+        </label>
+        <button type="button" class="dizo-al-forgot" onclick="showAdminForgotPwd()">Forgot password?</button>
+      </div>
+      <!-- Submit Button -->
+      <button type="button" class="dizo-al-btn" id="adminLoginBtn" onclick="checkAdminPassword()">
+        <span class="dizo-al-btn-text">Access Dashboard</span>
+        <div class="dizo-al-btn-loader" id="adminBtnLoader"></div>
+        <svg class="dizo-al-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <!-- Cancel -->
+      <button type="button" class="dizo-al-cancel" onclick="closeAdminGate()">✕ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN FORGOT PASSWORD MODAL -->
+<div class="admin-login-gate" id="adminForgotGate">
+  <div class="admin-login-box">
+    <div class="admin-login-icon" style="background:var(--gold)">🔑</div>
+    <div class="admin-login-title">Reset Password</div>
+    <div class="admin-login-sub">Enter your admin email to receive a reset link</div>
+    <div id="adminForgotForm">
+      <div class="admin-login-input-wrap" style="margin-bottom:1.25rem">
+        <input type="email" id="adminForgotEmail" placeholder="admin@dizocart.com" style="letter-spacing:normal">
+      </div>
+      <button class="admin-login-btn" onclick="submitAdminForgot()" style="background:var(--gold)">📧 Send Reset Link</button>
+    </div>
+    <div id="adminForgotSuccess" style="display:none">
+      <div style="font-size:3rem;margin-bottom:1rem">✉️</div>
+      <p style="font-size:0.875rem;color:var(--text2);line-height:1.6;margin-bottom:1.5rem">A reset link has been sent to your email. Check your inbox and follow the instructions.</p>
+      <button class="admin-login-btn" onclick="backToAdminLogin()" style="background:var(--text)">← Back to Login</button>
+    </div>
+    <button onclick="backToAdminLogin()" style="margin-top:1.25rem;font-size:0.8rem;color:var(--text3);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:inherit">← Back to login</button>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL PAGE (first instance) -->
+<div class="product-detail-page" id="productDetailPage">
+  <div class="pdp-topbar">
+    <button class="pdp-back" id="pdpBackBtn" onclick="closeProductDetail()">
+      ← <span id="pdpBackLabel">Back to Shop</span>
+    </button>
+    <div class="pdp-breadcrumb">
+      Home › <span id="pdpBreadCat">Kitchen</span> › <span id="pdpBreadName">Product</span>
+    </div>
+    <!-- PDP Inline Search -->
+    <div class="pdp-search-wrap" id="pdpSearchWrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="pdpSearchInput" placeholder="Search products…"
+        autocomplete="off"
+        oninput="pdpSearchLive(this.value)"
+        onkeydown="pdpSearchKey(event)"
+        onfocus="pdpSearchFocus()"
+        onblur="setTimeout(pdpSearchBlur,160)">
+      <button class="pdp-search-clear" id="pdpSearchClear" onclick="pdpSearchClear()" style="display:none">✕</button>
+      <div class="pdp-search-dropdown" id="pdpSearchDropdown"></div>
+    </div>
+    <div class="pdp-share-row">
+      <div class="pdp-share-btn" onclick="showToast('🔗 Link copied!')" title="Copy link">🔗</div>
+      <div class="pdp-share-btn" onclick="showToast('📱 Shared!')" title="Share">📤</div>
+    </div>
+  </div>
+
+  <div class="pdp-body">
+    <!-- GALLERY -->
+    <div class="pdp-gallery">
+      <div class="pdp-main-img" id="pdpMainImg">
+        <span id="pdpEmoji" style="font-size:8rem">🍳</span>
+        <div class="pdp-zoom-hint">🔍 Swipe to browse</div>
+      </div>
+      <div class="pdp-gallery-dots" id="pdpGalleryDots"></div>
+      <div class="pdp-thumbnails-scroll" id="pdpThumbnails">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="pdp-info">
+      <div class="pdp-cat-row">
+        <span class="pdp-cat-tag" id="pdpCatTag">Kitchen</span>
+        <span id="pdpBadgeTag" style="font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:20px;background:#FEF3C7;color:#92400E">SALE</span>
+      </div>
+      <h1 class="pdp-title" id="pdpTitle">Product Name</h1>
+      <div class="pdp-rating-row">
+        <span class="pdp-stars">★★★★★</span>
+        <span class="pdp-rating-num" id="pdpRatingNum">4.8</span>
+        <span class="pdp-review-count" id="pdpReviewCount">(234 reviews)</span>
+        <span class="pdp-reviews-link" onclick="switchPdpTab('reviews')">See all reviews</span>
+      </div>
+
+      <div class="pdp-price-block">
+        <span class="pdp-price-current" id="pdpPriceCurrent">৳3,499</span>
+        <span class="pdp-price-old" id="pdpPriceOld">৳5,000</span>
+        <span class="pdp-price-off" id="pdpPriceOff">30% OFF</span>
+        <span class="pdp-price-save" id="pdpPriceSave">Save ৳1,501</span>
+      </div>
+
+      <div class="pdp-tabs">
+        <div class="pdp-tab active" id="pdpTabDesc" onclick="switchPdpTab('desc')">Description</div>
+        <div class="pdp-tab" id="pdpTabSpecs" onclick="switchPdpTab('specs')">Specifications</div>
+        <div class="pdp-tab" id="pdpTabReviews" onclick="switchPdpTab('reviews')">Reviews</div>
+      </div>
+
+      <div class="pdp-tab-content active" id="pdpContentDesc">
+        <div class="pdp-desc-block">
+          <div class="pdp-desc-title">About This Product</div>
+          <div class="pdp-desc-text" id="pdpDescText" style="display:none"></div>
+          <ul class="pdp-features" id="pdpFeatureList">
+            <!-- Filled by JS -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="pdp-tab-content" id="pdpContentSpecs">
+        <table class="pdp-specs-table" id="pdpSpecsTable">
+          <!-- Filled by JS -->
+        </table>
+      </div>
+
+      <div class="pdp-tab-content" id="pdpContentReviews">
+        <div id="pdpReviewsList"><!-- Filled by JS --></div>
+      </div>
+
+      <div class="pdp-divider"></div>
+
+      <div class="pdp-options">
+        <div class="pdp-qty-row">
+          <span class="pdp-qty-label">Quantity</span>
+          <div class="pdp-qty-ctrl">
+            <button onclick="changePdpQty(-1)">−</button>
+            <span id="pdpQtyVal">1</span>
+            <button onclick="changePdpQty(1)">+</button>
+          </div>
+          <span style="font-size:0.8rem;color:var(--text3);margin-left:0.5rem">In Stock ✓</span>
+        </div>
+      </div>
+
+      <div class="pdp-cta-btns">
+        <button class="pdp-btn-atc" id="pdpBtnAtc" onclick="pdpAddToCart()">🛒 Add to Cart</button>
+        <button class="pdp-btn-buy" onclick="pdpBuyNow()">⚡ Buy Now</button>
+      </div>
+      <button class="pdp-btn-wish" id="pdpBtnWish" onclick="pdpToggleWish()" style="width:100%">♡ Add to Wishlist</button>
+
+      <!-- ===== CALL NOW & WHATSAPP ROW (Feature 7) ===== -->
+      <div class="pdp-contact-row" id="pdpContactRow">
+        <button class="pdp-btn-call" id="pdpBtnCall" onclick="pdpCallNow()" aria-label="Call us now to order">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.99 5.99l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          📞 Call Now
+        </button>
+        <button class="pdp-btn-wa" id="pdpBtnWA" onclick="pdpWhatsApp()" aria-label="Chat on WhatsApp to order">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </button>
+      </div>
+      <!-- Fallback shown when device cannot initiate a phone call -->
+      <div class="pdp-call-fallback" id="pdpCallFallback"></div>
+      <!-- ===== END CALL NOW ROW ===== -->
+
+      <div class="pdp-trust-row">
+        <div class="pdp-trust-item">
+          <div class="pdp-trust-icon">🚚</div>
+          <div class="pdp-trust-label">Free Delivery</div>
+          <div class="pdp-trust-sub">Orders over ৳999</div>
+        </div>
+        <div class="pdp-trust-item">
+          <div class="pdp-trust-icon">🔄</div>
+          <div class="pdp-trust-label">Easy Returns</div>
+          <div class="pdp-trust-sub">7-day return policy</div>
+        </div>
+        <div class="pdp-trust-item">
+          <div class="pdp-trust-icon">🛡️</div>
+          <div class="pdp-trust-label">Warranty</div>
+          <div class="pdp-trust-sub">1 year coverage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <div class="pdp-related">
+    <div class="pdp-related-title">You May Also Like</div>
+    <div class="pdp-related-grid" id="pdpRelatedGrid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- QUICK VIEW MODAL -->
+<div class="modal-backdrop" id="quickViewModal" onclick="closeModal(event)">
+  <div class="modal" id="modalContent" style="position:relative">
+    <div class="modal-img" id="modalImg">🍳</div>
+    <div class="modal-body">
+      <button class="modal-close" onclick="document.getElementById('quickViewModal').classList.remove('open')">✕</button>
+      <div class="modal-cat" id="modalCat">Kitchen</div>
+      <div class="modal-name" id="modalName">Product Name</div>
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
+        <span class="price-current" id="modalPrice" style="font-family:'Playfair Display',serif;font-size:1.5rem">৳999</span>
+        <span class="price-old" id="modalOldPrice">৳1,500</span>
+        <span class="price-off" id="modalOff">35% OFF</span>
+      </div>
+      <div class="testimonial-stars" style="margin-bottom:0.5rem">★★★★★ <span style="font-size:0.8rem;color:var(--text3)">(142 reviews)</span></div>
+      <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap">
+        <span class="tag tag-gold">✓ In Stock</span>
+        <span class="tag" style="background:#EFF6FF;color:#1E3A8A;border-color:#BFDBFE">🚚 Free Delivery</span>
+        <span class="tag" style="background:#F0FDF4;color:#065F46;border-color:#BBF7D0">🔄 Easy Returns</span>
+      </div>
+      <p class="modal-desc" id="modalDesc">A premium quality product designed for your lifestyle.</p>
+      <div style="display:flex;gap:0.5rem;margin-top:1.5rem;flex-wrap:wrap">
+        <button class="btn-primary" style="flex:1;padding:0.75rem;min-width:120px" onclick="addToCartFromModal()">🛒 Add to Cart</button>
+        <button class="btn-buy-now" style="flex:1;padding:0.75rem;min-width:120px" onclick="buyNowFromModal()">⚡ Buy Now</button>
+        <button class="btn-outline" style="padding:0.75rem 1rem" onclick="toggleWishFromModal()">♡</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkoutModal">
+  <div class="checkout-box">
+    <button style="position:absolute;top:1rem;right:1rem;font-size:1.1rem;cursor:pointer;width:32px;height:32px;background:var(--bg2);border-radius:50%;display:flex;align-items:center;justify-content:center" onclick="closeCheckout()">✕</button>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.5rem">Checkout</h3>
+    <div class="checkout-steps-bar">
+      <div class="step-indicator active" id="step1ind">① Customer Info</div>
+      <div class="step-indicator" id="step2ind">② Payment</div>
+      <div class="step-indicator" id="step3ind">③ Confirm</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="checkout-step active" id="checkoutStep1">
+      <div class="form-row">
+        <div class="form-group"><label>Full Name *</label><input id="chkName" type="text" placeholder="Your full name"></div>
+        <div class="form-group"><label>Phone *</label><input id="chkPhone" type="tel" placeholder="01XXXXXXXXX"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input id="chkEmail" type="email" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Full Address *</label><input id="chkAddr" type="text" placeholder="House, Road, Area, District"></div>
+
+      <!-- DELIVERY ZONE SELECTOR -->
+      <div class="form-group">
+        <label style="font-weight:600;font-size:0.82rem;color:var(--text2);display:block;margin-bottom:0.5rem">Delivery Zone *</label>
+        <div id="deliveryZoneOptions" style="display:flex;gap:0.6rem;flex-wrap:wrap">
+          <label id="dzOptInside" onclick="selectDeliveryZone('insideDhaka')" style="flex:1;min-width:140px;display:flex;align-items:center;gap:0.6rem;border:2px solid var(--gold);background:#fffbf4;border-radius:var(--r2);padding:0.7rem 0.875rem;cursor:pointer;transition:all 0.2s">
+            <input type="radio" name="deliveryZone" value="insideDhaka" checked style="accent-color:var(--gold)">
+            <div>
+              <div style="font-weight:700;font-size:0.82rem;color:var(--text)">🏙️ Inside Dhaka</div>
+              <div id="dzInsiDeliveryLabel" style="font-size:0.72rem;color:var(--text3);margin-top:1px">৳60 delivery charge</div>
+            </div>
+          </label>
+          <label id="dzOptOutside" onclick="selectDeliveryZone('outsideDhaka')" style="flex:1;min-width:140px;display:flex;align-items:center;gap:0.6rem;border:2px solid var(--border);background:var(--bg2);border-radius:var(--r2);padding:0.7rem 0.875rem;cursor:pointer;transition:all 0.2s">
+            <input type="radio" name="deliveryZone" value="outsideDhaka" style="accent-color:var(--gold)">
+            <div>
+              <div style="font-weight:700;font-size:0.82rem;color:var(--text)">🗺️ Outside Dhaka</div>
+              <div id="dzOutsiDeliveryLabel" style="font-size:0.72rem;color:var(--text3);margin-top:1px">৳120 delivery charge</div>
+            </div>
+          </label>
+        </div>
+        <div id="dzFreeNote" style="display:none;margin-top:0.4rem;font-size:0.75rem;color:#059669;font-weight:600">🎉 You qualify for free delivery!</div>
+      </div>
+
+      <div class="form-group"><label>Order Notes</label><textarea id="chkNotes" rows="2" placeholder="Any special instructions..." style="resize:vertical"></textarea></div>
+      <div style="margin-top:1.25rem;padding:1rem;background:var(--bg2);border-radius:var(--r2);font-size:0.82rem" id="checkoutSummary"></div>
+      <button class="btn-primary" style="width:100%;padding:0.75rem;margin-top:1rem" onclick="goCheckoutStep2()">Continue to Payment →</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="checkout-step" id="checkoutStep2">
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Select your payment method:</p>
+      <div class="payment-methods" id="checkoutPaymentMethods">
+        <label class="payment-option selected" onclick="selectPayment(this,'cod')"><input type="radio" name="pay" checked> 💵 Cash on Delivery (COD)</label>
+        <label class="payment-option" onclick="selectPayment(this,'bkash')"><input type="radio" name="pay"> 📱 bKash</label>
+        <label class="payment-option" onclick="selectPayment(this,'nagad')"><input type="radio" name="pay"> 🟠 Nagad</label>
+        <label class="payment-option" onclick="selectPayment(this,'rocket')"><input type="radio" name="pay"> 🚀 Rocket</label>
+        <label class="payment-option" onclick="selectPayment(this,'card')"><input type="radio" name="pay"> 💳 Card / SSLCommerz / Stripe</label>
+      </div>
+      <div id="couponCheckout" style="margin-bottom:1rem">
+        <div class="coupon-row">
+          <input type="text" id="chkCoupon" placeholder="Coupon code (try DIZO20)">
+          <button onclick="applyCouponCheckout()">Apply</button>
+        </div>
+      </div>
+      <div style="padding:1rem;background:var(--bg2);border-radius:var(--r2);font-size:0.85rem;margin-bottom:1rem">
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.4rem"><span>Subtotal</span><span id="chkSubtotal">৳0</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.4rem"><span>Discount</span><span id="chkDiscount" style="color:#059669">-৳0</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.4rem"><span id="chkDeliveryZoneLabel">Delivery (Inside Dhaka)</span><span id="chkDelivery">৳60</span></div>
+        <div style="display:flex;justify-content:space-between;font-weight:700;padding-top:0.5rem;border-top:1px solid var(--border)"><span>Total</span><span id="chkTotal" style="color:var(--gold)">৳0</span></div>
+      </div>
+      <div style="display:flex;gap:0.5rem">
+        <button class="btn-outline" style="flex:1;padding:0.75rem" onclick="goCheckoutStep1()">← Back</button>
+        <button class="btn-primary" style="flex:2;padding:0.75rem" onclick="placeOrder()">Place Order ✓</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: CONFIRMATION -->
+    <div class="checkout-step" id="checkoutStep3">
+      <div class="order-confirm-box">
+        <div class="order-confirm-icon">🎉</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.5rem">Order Placed!</h3>
+        <p style="color:var(--text2);margin-bottom:0.5rem">Thank you for shopping with <strong>Dizo Cart</strong>!</p>
+        <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.5rem">Order ID: <strong id="orderId">#DC0001</strong></p>
+        <div id="orderSummaryFinal" style="text-align:left;background:var(--bg2);border-radius:var(--r2);padding:1rem;margin-bottom:1.25rem;font-size:0.85rem"></div>
+        <div class="order-tracking">
+          <div class="track-step"><div class="track-dot done">✓</div><div class="track-label">Pending</div></div>
+          <div class="track-step"><div class="track-dot active">⚙</div><div class="track-label">Processing</div></div>
+          <div class="track-step"><div class="track-dot">🚚</div><div class="track-label">Shipped</div></div>
+          <div class="track-step"><div class="track-dot">📦</div><div class="track-label">Delivered</div></div>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text3);margin-top:1rem">📱 SMS & WhatsApp confirmation sent • 📧 Email confirmation sent</p>
+        <p style="font-size:0.75rem;color:var(--text3)">Estimated delivery: <strong>2-3 business days</strong></p>
+        <div style="display:flex;gap:0.5rem;margin-top:1.5rem">
+          <button class="btn-primary" style="flex:1;padding:0.65rem" onclick="closeCheckout()">Continue Shopping</button>
+          <button class="btn-outline" style="flex:1;padding:0.65rem" onclick="downloadInvoice()">⬇ Invoice</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-backdrop" id="loginModal" onclick="closeLoginModal(event)">
+  <div style="background:var(--white);border-radius:24px;max-width:420px;width:100%;padding:2.5rem;position:relative;transform:translateY(16px);transition:transform 0.3s ease" id="loginBox">
+    <button style="position:absolute;top:1rem;right:1rem;font-size:1.1rem;cursor:pointer;width:32px;height:32px;background:var(--bg2);border-radius:50%;display:flex;align-items:center;justify-content:center" onclick="document.getElementById('loginModal').classList.remove('open');activeMobTab('home');history.pushState({page:'home'},'',window.location.pathname+window.location.search)">✕</button>
+    <div id="loginView">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.3rem">Welcome Back</h3>
+      <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.5rem">Sign in to your Dizo Cart account</p>
+      <div class="form-group"><label>Email / Phone</label><input type="text" placeholder="Enter email or phone"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Enter password"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;cursor:pointer"><input type="checkbox"> Remember me</label>
+        <a href="#" style="font-size:0.8rem;color:var(--gold)">Forgot password?</a>
+      </div>
+      <button class="btn-primary" style="width:100%;padding:0.75rem;margin-bottom:0.75rem" onclick="handleLogin()">Sign In</button>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text3)">Don't have an account? <a href="#" onclick="showRegister()" style="color:var(--text);font-weight:600">Register</a></p>
+    </div>
+    <div id="registerView" style="display:none">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.3rem">Create Account</h3>
+      <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.5rem">Join Dizo Cart for exclusive deals</p>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="First name"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="01XXXXXXXXX"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Create password"></div>
+      <button class="btn-primary" style="width:100%;padding:0.75rem;margin-bottom:0.75rem" onclick="handleRegister()">Create Account</button>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text3)">Already have an account? <a href="#" onclick="showLogin()" style="color:var(--text);font-weight:600">Sign In</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-bar">
+    <div class="admin-bar-logo">Dizo <span>Cart</span> <span style="font-size:0.7rem;color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif">Admin</span></div>
+    <div class="admin-bar-nav">
+      <div class="admin-nav-btn active" onclick="showAdminTab('dashboard',this)">Dashboard</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('homepage',this)">🏠 Homepage</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('products',this)">Products</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('orders',this)">Orders</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('customers',this)">Customers</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('themes',this)">Themes</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('messaging',this)">Messaging</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('seo',this)">SEO</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('settings',this)">Settings</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('apimanager',this)">🔌 API</div>
+      <div class="admin-nav-btn" onclick="showAdminTab('metapixel',this)">📊 Meta Pixel</div>
+    </div>
+    <button onclick="closeAdmin()" class="admin-exit-btn">✕ Exit</button>
+  </div>
+  <div class="admin-content" id="adminContent">
+    <!-- Dashboard loads here -->
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-backdrop" id="contactModal" onclick="closeContactModal(event)">
+  <div style="background:var(--white);border-radius:24px;max-width:500px;width:100%;padding:2.5rem;position:relative;transform:translateY(16px);transition:transform 0.3s ease">
+    <button style="position:absolute;top:1rem;right:1rem;font-size:1.1rem;cursor:pointer;width:32px;height:32px;background:var(--bg2);border-radius:50%;display:flex;align-items:center;justify-content:center" onclick="document.getElementById('contactModal').classList.remove('open')">✕</button>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.3rem">Contact Us</h3>
+    <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.5rem">We'd love to hear from you!</p>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--bg2);border-radius:var(--r2)">📞 <span style="font-size:0.875rem">+880 1XXXXXXXX</span></div>
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--bg2);border-radius:var(--r2)">📧 <span style="font-size:0.875rem">support@dizocart.com</span></div>
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--bg2);border-radius:var(--r2)">💬 <span style="font-size:0.875rem;cursor:pointer;color:var(--gold)" onclick="openWhatsApp()">WhatsApp: +880 1XXXXXXXX</span></div>
+    </div>
+    <div class="form-group"><label>Your Message</label><textarea rows="3" placeholder="Write your message..." style="width:100%;padding:0.65rem;border:1.5px solid var(--border);border-radius:var(--r2);font-family:inherit;outline:none;resize:vertical"></textarea></div>
+    <button class="btn-primary" style="width:100%;padding:0.75rem;margin-top:0.5rem" onclick="sendContact()">Send Message</button>
+  </div>
+</div>
+
+<!-- TRACK ORDER MODAL -->
+<div class="modal-backdrop" id="trackModal" onclick="closeTrackModal(event)">
+  <div style="background:var(--white);border-radius:24px;max-width:500px;width:100%;padding:2.5rem;position:relative;transform:translateY(16px);transition:transform 0.3s ease">
+    <button style="position:absolute;top:1rem;right:1rem;font-size:1.1rem;cursor:pointer;width:32px;height:32px;background:var(--bg2);border-radius:50%;display:flex;align-items:center;justify-content:center" onclick="document.getElementById('trackModal').classList.remove('open')">✕</button>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.3rem">Track Your Order</h3>
+    <p style="font-size:0.85rem;color:var(--text3);margin-bottom:1.5rem">Enter your order ID or phone number</p>
+    <div class="form-group"><label>Order ID / Phone</label><input type="text" placeholder="#DC0001 or 01XXXXXXXXX"></div>
+    <button class="btn-primary" style="width:100%;padding:0.75rem;margin-top:0.5rem" onclick="trackOrder()">Track Order</button>
+    <div id="trackResult" style="margin-top:1.25rem;display:none">
+      <div class="order-tracking">
+        <div class="track-step"><div class="track-dot done">✓</div><div class="track-label">Pending</div></div>
+        <div class="track-step"><div class="track-dot done">✓</div><div class="track-label">Processing</div></div>
+        <div class="track-step"><div class="track-dot active">🚚</div><div class="track-label">Shipped</div></div>
+        <div class="track-step"><div class="track-dot">📦</div><div class="track-label">Delivered</div></div>
+      </div>
+      <p style="text-align:center;font-size:0.8rem;color:var(--text3);margin-top:1rem">Your order is on the way! Expected delivery: <strong>Tomorrow</strong></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- CATEGORY BOTTOM SHEET — shown over any page without navigation -->
+<div class="cat-sheet-overlay" id="catSheetOverlay" onclick="closeCatSheet()"></div>
+<div class="cat-sheet" id="catSheet">
+  <div class="cat-sheet-handle"></div>
+  <div class="cat-sheet-title">Browse Categories</div>
+  <div class="cat-sheet-grid">
+    <button class="cat-sheet-btn" onclick="pickCatFromSheet('kitchen')">
+      <span class="cat-sheet-icon">🍳</span>
+      <span class="cat-sheet-label">Kitchen</span>
+      <span class="cat-sheet-count" id="catSheetCount-kitchen">0 Products</span>
+    </button>
+    <button class="cat-sheet-btn" onclick="pickCatFromSheet('gadgets')">
+      <span class="cat-sheet-icon">📱</span>
+      <span class="cat-sheet-label">Gadgets</span>
+      <span class="cat-sheet-count" id="catSheetCount-gadgets">0 Products</span>
+    </button>
+    <button class="cat-sheet-btn" onclick="pickCatFromSheet('beauty')">
+      <span class="cat-sheet-icon">💄</span>
+      <span class="cat-sheet-label">Beauty</span>
+      <span class="cat-sheet-count" id="catSheetCount-beauty">0 Products</span>
+    </button>
+    <button class="cat-sheet-btn" onclick="pickCatFromSheet('home')">
+      <span class="cat-sheet-icon">🏠</span>
+      <span class="cat-sheet-label">Home</span>
+      <span class="cat-sheet-count" id="catSheetCount-home">0 Products</span>
+    </button>
+  </div>
+</div>
+
+<!-- =====================================================
+     DIZO CART — MODULAR JAVASCRIPT ARCHITECTURE
+     Load order matters — config and data first,
+     then modules, then init last.
+===================================================== -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/checkout.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/admin.js"></script>
+<script src="assets/js/pdp.js"></script>
+<script src="assets/js/category.js"></script>
+<script src="assets/js/mobile-search.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/router.js"></script>
+<script src="assets/js/init.js"></script>
+
+</body>
+</html>

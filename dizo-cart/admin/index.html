@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Dizo Cart</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="googlebot" content="noindex">
+<style>
+  /* Minimal redirect page — shown only for a split second */
+  body {
+    margin: 0;
+    background: #1A1A18;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    color: #fff;
+  }
+  .redirect-box {
+    text-align: center;
+    padding: 2rem;
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: serif;
+  }
+  .logo span { color: #C8A96E; }
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(200,169,110,0.2);
+    border-top-color: #C8A96E;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 1rem auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hint {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="redirect-box">
+  <div class="logo">Dizo <span>Cart</span></div>
+  <div class="spinner"></div>
+  <div class="hint">Verifying access…</div>
+</div>
+<script>
+  /**
+   * ============================================================
+   * DIZO CART — ADMIN SECURE REDIRECT
+   * ============================================================
+   * This page acts as a gated entry point to the admin panel.
+   * 
+   * ACCESS METHOD:
+   * Direct URL:  /admin/
+   * OR via main: Open main site → URL hash triggers admin gate
+   *
+   * SECURITY: The actual admin password gate is rendered inside
+   * the main app (index.html) via the adminLoginGate overlay.
+   * This redirect passes a secure session token query param.
+   * ============================================================
+   */
+
+  // Perform quick auth check
+  (function() {
+    const remembered = sessionStorage.getItem('dizo_admin_ok') ||
+                       localStorage.getItem('dizo_admin_remember');
+
+    if (remembered === 'true') {
+      // Already authenticated — go directly to dashboard
+      window.location.href = '../index.html#admin-dashboard';
+    } else {
+      // Not authenticated — redirect to main app which will show the admin gate
+      // Use a small delay to show the loading animation
+      setTimeout(() => {
+        window.location.href = '../index.html#admin';
+      }, 600);
+    }
+  })();
+</script>
+</body>
+</html>

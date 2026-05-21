@@ -1,0 +1,102 @@
+<!--
+  ╔═══════════════════════════════════════════════════════════════╗
+  ║  Dizo Cart — Navbar Component                                 ║
+  ║  Usage: Include this file's content into any page's <body>   ║
+  ║  Both desktop and mobile navbars are included here.          ║
+  ╚═══════════════════════════════════════════════════════════════╝
+-->
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>🚚 Free delivery on orders over ৳999 — <strong>Summer Sale Up to 60% OFF!</strong></div>
+    <div style="display:flex;align-items:center;gap:1.5rem">
+      <div class="top-bar-lang">
+        <button id="langBtn" onclick="toggleLang()">বাং</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV — DESKTOP -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Dizo <span>Cart</span></a>
+    <div class="nav-search-bar" id="navSearchBar">
+      <select class="nav-search-cat" id="navSearchCat" onchange="setNavCat(this.value)">
+        <option value="all">All</option>
+        <option value="kitchen">Kitchen</option>
+        <option value="gadgets">Gadgets</option>
+        <option value="beauty">Beauty</option>
+        <option value="home">Home</option>
+      </select>
+      <div class="nav-search-divider"></div>
+      <input class="nav-search-input" id="navSearchInput" type="text"
+        placeholder="Search products, brands…"
+        autocomplete="off"
+        oninput="navSearchLive(this.value)"
+        onkeydown="navSearchKey(event)"
+        onfocus="navSearchFocus()"
+        onblur="setTimeout(navSearchBlur,150)">
+      <button class="nav-search-btn" onclick="navSearchSubmit()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="nav-search-dropdown" id="navSearchDropdown"></div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="openWishlist()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span>Wishlist</span>
+      </button>
+      <button class="nav-btn cart-badge" onclick="openCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Cart</span>
+        <div class="badge" id="cartCount">0</div>
+      </button>
+      <button class="btn-primary" onclick="openLoginModal()">Sign In</button>
+    </div>
+  </div>
+</nav>
+
+<!-- DESKTOP CATEGORY NAV BAR -->
+<div class="nav-cats">
+  <div class="nav-cats-inner">
+    <span class="nav-cat-link" onclick="openCategoryPage('kitchen')">🍳 Kitchen Essentials</span>
+    <span class="nav-cat-link" onclick="openCategoryPage('home')">🏠 Home Essentials</span>
+    <span class="nav-cat-link" onclick="openCategoryPage('gadgets')">📱 Gadget Items</span>
+    <span class="nav-cat-link" onclick="openCategoryPage('beauty')">💄 Beauty & Skincare</span>
+    <span class="nav-cat-link" onclick="showToast('New Arrivals coming soon!')">✨ New Arrivals</span>
+    <span class="nav-cat-link" onclick="showToast('Brands page coming soon!')">🏷️ Brands</span>
+    <span class="nav-cat-link" onclick="openTrackOrder()">📦 Track Order</span>
+    <span class="nav-cat-link" onclick="openContact()">💬 Contact</span>
+    <span class="nav-cat-link sale" onclick="showToast('Flash Sale is live!')">🔥 Sale</span>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-top">
+    <button class="mobile-hamburger" onclick="openMobileMenu()" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="mobile-logo">Dizo <span>Cart</span></div>
+    <button class="mobile-cart-btn cart-badge" onclick="openCart()" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <div class="badge" id="mobileCartCount">0</div>
+    </button>
+  </div>
+  <div class="mobile-search-row" style="position:relative">
+    <div class="mobile-search-wrap">
+      <input type="text" id="mobileSearchInput" placeholder="Search product, brand, and more…"
+        oninput="mobileSearchLive(this.value)"
+        onkeydown="mobileSearchKey(event)"
+        onfocus="mobileSearchFocus()"
+        onblur="setTimeout(mobileSearchBlur,300)"
+        autocomplete="off">
+      <button onclick="mobileSearchSubmit()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <div class="mobile-search-dropdown" id="mobileSearchDropdown"></div>
+  </div>
+</nav>

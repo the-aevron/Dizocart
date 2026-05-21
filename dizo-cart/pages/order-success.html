@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Placed — Dizo Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/01-variables-base.css">
+<link rel="stylesheet" href="../assets/css/02-navbar.css">
+<link rel="stylesheet" href="../assets/css/07-animations.css">
+<link rel="stylesheet" href="../assets/css/08-ui-components.css">
+<link rel="stylesheet" href="../assets/css/11-responsive.css">
+<style>
+  .success-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: var(--bg); }
+  .success-card { background: var(--white); border-radius: 24px; padding: 3rem 2rem; max-width: 520px; width: 100%; text-align: center; box-shadow: var(--shadow2); animation: fadeUp 0.5s ease; }
+  .success-icon { font-size: 4rem; margin-bottom: 1rem; animation: heartPop 0.5s 0.3s ease both; }
+  .success-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.5rem; }
+  .success-sub { color: var(--text2); margin-bottom: 2rem; }
+  .order-id-box { background: var(--bg2); border-radius: var(--r2); padding: 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  .order-id-label { color: var(--text3); margin-bottom: 0.25rem; }
+  .order-id-val { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--gold); }
+  .track-steps { display: flex; gap: 0; margin: 1.5rem 0; }
+  .ts { flex: 1; text-align: center; }
+  .ts-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.35rem; font-size: 0.85rem; }
+  .ts-dot.pending { background: var(--bg3); color: var(--text3); }
+  .ts-label { font-size: 0.7rem; color: var(--text2); }
+  .success-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .success-actions button { flex: 1; padding: 0.75rem; border-radius: var(--r2); font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; }
+  .btn-continue { background: var(--text); color: #fff; }
+  .btn-track { background: var(--bg2); color: var(--text); border: 1.5px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="success-page">
+  <div class="success-card">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">Order Confirmed!</div>
+    <div class="success-sub">Thank you for shopping with <strong>Dizo Cart</strong></div>
+
+    <div class="order-id-box">
+      <div class="order-id-label">Your Order ID</div>
+      <div class="order-id-val" id="successOrderId">#DC1001</div>
+    </div>
+
+    <div class="track-steps">
+      <div class="ts"><div class="ts-dot">✓</div><div class="ts-label">Placed</div></div>
+      <div class="ts"><div class="ts-dot">⚙</div><div class="ts-label">Processing</div></div>
+      <div class="ts"><div class="ts-dot pending">🚚</div><div class="ts-label">Shipped</div></div>
+      <div class="ts"><div class="ts-dot pending">📦</div><div class="ts-label">Delivered</div></div>
+    </div>
+
+    <p style="font-size:0.8rem;color:var(--text3);margin-bottom:1.5rem">
+      📱 SMS & WhatsApp confirmation will be sent shortly<br>
+      Estimated delivery: <strong>2–3 business days</strong>
+    </p>
+
+    <div class="success-actions">
+      <button class="btn-continue" onclick="window.location.href='../index.html'">Continue Shopping</button>
+      <button class="btn-track" onclick="window.location.href='../index.html#track'">Track Order</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Read order ID from URL params or sessionStorage
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get('id') || sessionStorage.getItem('dizo_last_order_id') || '#DC1001';
+  document.getElementById('successOrderId').textContent = orderId;
+</script>
+</body>
+</html>

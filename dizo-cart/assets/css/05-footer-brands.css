@@ -1,0 +1,37 @@
+/* ======================================================
+   Dizo Cart — 05-footer-brands.css
+   Extracted from dizo_cart_V47.html | Lines 298-328
+   DO NOT EDIT manually — auto-generated
+====================================================== */
+
+/* FOOTER */
+footer{background:var(--text);color:var(--white);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;margin-bottom:1rem}
+.footer-logo span{color:var(--gold)}
+.footer-desc{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+.footer-social{display:flex;gap:0.5rem}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all var(--transition);cursor:pointer}
+.social-btn:hover{background:var(--gold)}
+.footer-col h4{font-size:0.85rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.footer-links{display:flex;flex-direction:column;gap:0.6rem}
+.footer-links a{font-size:0.85rem;color:rgba(255,255,255,0.6);transition:color var(--transition)}
+.footer-links a:hover{color:var(--white)}
+.footer-bottom{padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:0.8rem;color:rgba(255,255,255,0.4)}
+.payment-icons{display:flex;gap:0.5rem}
+.pay-icon{background:rgba(255,255,255,0.08);border-radius:4px;padding:0.25rem 0.6rem;font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.04em}
+
+/* PROMO BANNER */
+.promo-banner{background:var(--gold);color:var(--white);text-align:center;padding:0.6rem 2rem;font-size:0.78rem;font-weight:600;letter-spacing:0.04em}
+.promo-banner a{color:var(--white);text-decoration:underline;margin-left:0.5rem}
+
+/* BRANDS */
+.brands-strip{display:flex;gap:2rem;align-items:center;justify-content:center;padding:2.5rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:visible}
+.brand-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--text3);letter-spacing:0.02em;transition:color var(--transition);white-space:nowrap;flex-shrink:0;min-width:0}
+.brand-logo:hover{color:var(--text)}
+.brand-sep{color:var(--border);font-size:1.2rem}
+
+/* SEARCH OVERLAY — removed in V5, replaced with inline bar */
+
