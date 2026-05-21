@@ -5,13 +5,13 @@
  * Get them from: Supabase Dashboard → Settings → API
  * ============================================================
  */
-
-const SUPABASE_URL  = 'https://YOUR_PROJECT_REF.supabase.co';
-const SUPABASE_KEY  = 'YOUR_ANON_PUBLIC_KEY';  // Safe to expose in frontend
-
+ 
+const SUPABASE_URL  = 'https://dwxopseoqawgzfwouoce.supabase.co';
+const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3eG9wc2VvcWF3Z3pmd291b2NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNTYyMjUsImV4cCI6MjA5NDkzMjIyNX0.MxQW7VMGpTaXlUrQTcyXj_h3NA0l8L2Y0gX3RzIMTZs';  // Safe to expose in frontend
+ 
 // Initialize (requires @supabase/supabase-js or CDN)
-// const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+ 
 /**
  * SQL Schema for Supabase (run in SQL Editor)
  * ============================================================
@@ -76,75 +76,71 @@ const SUPABASE_KEY  = 'YOUR_ANON_PUBLIC_KEY';  // Safe to expose in frontend
  * CREATE POLICY "Public order insert" ON orders FOR INSERT WITH CHECK (true);
  * CREATE POLICY "Admin orders read" ON orders FOR SELECT USING (auth.role() = 'authenticated');
  */
-
+ 
 /**
  * Supabase Product Functions
  */
 const SupabaseProducts = {
   async getAll(filters = {}) {
-    // let query = supabase.from('products').select('*').order('created_at', { ascending: false });
-    // if (filters.cat) query = query.eq('cat', filters.cat);
-    // if (filters.status) query = query.eq('status', filters.status);
-    // const { data, error } = await query;
-    // if (error) throw error;
-    // return data;
-    console.warn('Supabase not configured.');
-    return [];
+    let query = supabase.from('products').select('*').order('created_at', { ascending: false });
+    if (filters.cat) query = query.eq('cat', filters.cat);
+    if (filters.status) query = query.eq('status', filters.status);
+    const { data, error } = await query;
+    if (error) throw error;
+    return data;
   },
-
+ 
   async add(product) {
-    // const { data, error } = await supabase.from('products').insert([product]).select();
-    // if (error) throw error;
-    // return data[0];
+    const { data, error } = await supabase.from('products').insert([product]).select();
+    if (error) throw error;
+    return data[0];
   },
-
+ 
   async update(id, changes) {
-    // const { data, error } = await supabase.from('products').update(changes).eq('id', id).select();
-    // if (error) throw error;
-    // return data[0];
+    const { data, error } = await supabase.from('products').update(changes).eq('id', id).select();
+    if (error) throw error;
+    return data[0];
   },
-
+ 
   async delete(id) {
-    // const { error } = await supabase.from('products').delete().eq('id', id);
-    // if (error) throw error;
+    const { error } = await supabase.from('products').delete().eq('id', id);
+    if (error) throw error;
   }
 };
-
+ 
 /**
  * Supabase Order Functions
  */
 const SupabaseOrders = {
   async place(orderData) {
-    // const { data, error } = await supabase.from('orders').insert([orderData]).select();
-    // if (error) throw error;
-    // return data[0];
+    const { data, error } = await supabase.from('orders').insert([orderData]).select();
+    if (error) throw error;
+    return data[0];
   },
-
+ 
   async getAll() {
-    // const { data, error } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-    // if (error) throw error;
-    // return data;
+    const { data, error } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    return data;
   },
-
+ 
   async updateStatus(id, status) {
-    // const { error } = await supabase.from('orders').update({ status, updated_at: new Date().toISOString() }).eq('id', id);
-    // if (error) throw error;
+    const { error } = await supabase.from('orders').update({ status, updated_at: new Date().toISOString() }).eq('id', id);
+    if (error) throw error;
   }
 };
-
+ 
 /**
  * Supabase Storage Image Upload
  */
 async function uploadImageToSupabase(file, productId) {
-  // const fileName = `${productId}/${Date.now()}_${file.name}`;
-  // const { data, error } = await supabase.storage.from('product-images').upload(fileName, file);
-  // if (error) throw error;
-  // const { data: urlData } = supabase.storage.from('product-images').getPublicUrl(fileName);
-  // return urlData.publicUrl;
-  console.warn('Supabase Storage not configured.');
-  return null;
+  const fileName = `${productId}/${Date.now()}_${file.name}`;
+  const { data, error } = await supabase.storage.from('product-images').upload(fileName, file);
+  if (error) throw error;
+  const { data: urlData } = supabase.storage.from('product-images').getPublicUrl(fileName);
+  return urlData.publicUrl;
 }
-
+ 
 if (typeof module !== 'undefined') {
   module.exports = { SUPABASE_URL, SUPABASE_KEY, SupabaseProducts, SupabaseOrders, uploadImageToSupabase };
 }
